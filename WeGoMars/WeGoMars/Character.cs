@@ -16,6 +16,8 @@ namespace WeGoMars{
 		public int Level { get; set; }
 		public int Atk { get; set; }
 		public int Def { get; set; }
+		public int MaxHp { get; set; }
+		public int MaxMp { get; set; }
 		public int Hp { get; set; }
 		public int Mp { get; set; }
 		public int Gold { get; set; }
@@ -38,7 +40,7 @@ namespace WeGoMars{
 
 		public bool IsDead()
 		{
-			if (this.Hp < 0)
+			if (this.Hp <= 0)
 				return true;
 			else
 				return false;
