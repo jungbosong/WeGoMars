@@ -4,15 +4,15 @@ namespace WeGoMars
     {
         public void DisplaySetCharacter()
         {
-            public void DisplayStore()
+            void DisplayStore()
             {
 
             } 
-            public void DisplayBuy()
+            void DisplayBuy()
             {
 
             }
-            public void DisplaySell()
+            void DisplaySell()
             {
 
             }

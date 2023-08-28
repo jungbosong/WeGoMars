@@ -24,20 +24,6 @@ namespace WeGoMars{
 		public List<Item> Inventory { get; set; }
 
 
-		public Character(string name, string job, int level, int atk, int def, int hp, int mp, int gold, int exp, List<Skill> skillList, List<Item> inventory)
-		{
-			Name = name;
-			Job = job;
-			Level = level;
-			Atk = atk;
-			Def = def;
-			Hp = hp;
-			Mp = mp;
-			Gold = gold;
-			Exp = exp;
-			SkillList = skillList;
-			Inventory = inventory;
-		}
 		public abstract void Attack(int damage);
 
 		public abstract void TakeDamage(int damage);
@@ -48,7 +34,6 @@ namespace WeGoMars{
 			Item dropItem = Inventory[randomNum];
 			Inventory.Remove(dropItem);
 			return dropItem;
-
 		}
 
 		public bool IsDead()

@@ -14,7 +14,6 @@ namespace WeGoMars
 
         public Player(string name, string job, int level, int atk, int def, int hp, int mp, int gold, int exp,
                       List<Skill> skillList, List<Item> inventory, List<Item> equippedItems, int healthPotionCnt, int manaPotionCnt)
-                       : base(name, job, level, atk, def, hp, mp, gold, exp, skillList, inventory)
         {
             Name = name;
             Job = job;
