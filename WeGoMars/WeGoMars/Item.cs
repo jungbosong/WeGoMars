@@ -11,9 +11,10 @@ namespace WeGoMars
         public int Atk { get; }
         public int Def { get; }
         public int Hp { get; }
+        public int Mp { get; }
         public int Price { get; }
 
-        public Item(string name, string code, string itemType, string info, int atk, int def, int hp, int price)
+        public Item(string name, string code, string itemType, string info, int atk, int def, int hp, int mp,int price)
         {
             Name = name;
             Code = code;
@@ -22,6 +23,7 @@ namespace WeGoMars
             Atk = atk;
             Def = def;
             Hp = hp;
+            Mp = mp;
             Price = price;
         }
     }

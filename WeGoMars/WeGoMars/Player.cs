@@ -20,6 +20,8 @@ namespace WeGoMars
             Level = level;
             Atk = atk;
             Def = def;
+            MaxHp = maxHp;
+            MaxMp = maxMp;
             Hp = hp;
             Mp = mp;
             Gold = gold;
@@ -41,9 +43,29 @@ namespace WeGoMars
 
         }
 
-        public void GetItem(Item item)
+        public void ObtainItem(Item item)
         {
             Inventory.Add(item);
+        }
+
+        public int GetTotalAtk()
+        {
+            int totalAtk = Atk;
+            foreach (Item item in EquippedItems)
+            {
+                totalAtk += item.Atk;
+            }
+            return totalAtk;
+        }
+
+        public int GetTotalDef()
+        {
+            int totalDef = Def;
+            foreach (Item item in EquippedItems)
+            {
+                totalDef += item.Def;
+            }
+            return totalDef;
         }
 
         public void EquipItem(Item item)
@@ -62,12 +84,16 @@ namespace WeGoMars
                         }
                     }
                     EquippedItems.Add(item);
+                    MaxHp += item.Hp;
+                    MaxMp += item.Mp;
                 }
             }
             else
             {
                 Inventory.Add(item);
                 EquippedItems.Add(item);
+                MaxHp += item.Hp;
+                MaxMp += item.Mp;
             }
         }
 
@@ -76,8 +102,11 @@ namespace WeGoMars
             if (EquippedItems.Contains(item))
             {
                 EquippedItems.Remove(item);
+                MaxHp -= item.Hp;
+                MaxMp -= item.Mp;
             }
         }
+
         public void BuyItem(Item item)
         {
             if (!Inventory.Contains(item))
