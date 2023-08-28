@@ -12,7 +12,7 @@ namespace WeGoMars
         public int HealthPotionCnt { get; set; }
         public int ManaPotionCnt { get; set; }
 
-        public Player(string name, string job, int level, int atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
+        public Player(string name, string job, int level, float atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
                       List<Skill> skillList, List<Item> inventory, List<Item> equippedItems, int healthPotionCnt, int manaPotionCnt)
         {
             Name = name;
@@ -48,9 +48,21 @@ namespace WeGoMars
             Inventory.Add(item);
         }
 
-        public int GetTotalAtk()
+        public void GainExp(int exp)
         {
-            int totalAtk = Atk;
+
+        }
+
+        void LevelUp()
+        {
+            Level++;
+            Atk += 0.5f;
+            Def++;
+        }
+
+        public float GetTotalAtk()
+        {
+            float totalAtk = Atk;
             foreach (Item item in EquippedItems)
             {
                 totalAtk += item.Atk;
