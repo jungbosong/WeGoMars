@@ -1,10 +1,12 @@
-﻿namespace WeGoMars
+﻿using System.Net.NetworkInformation;
+
+namespace WeGoMars
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            Managers.MainScene.DisplayMain();
         }
     }
 }
