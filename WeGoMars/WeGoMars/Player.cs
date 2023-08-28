@@ -90,7 +90,7 @@ namespace WeGoMars
                 {
                     foreach (Item equippeditem in EquippedItems)
                     {
-                        if (equippeditem.ItemType == item.ItemType)
+                        if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
                         }

@@ -1,0 +1,108 @@
+[
+  {
+    "Name": "미니언",
+    "Job": "monster",
+    "Level": 2,
+    "Atk": 5.0,
+    "Def": 0,
+    "MaxHp": 15,
+    "MaxMp": 0,
+    "Hp": 15,
+    "Mp": 0,
+    "Gold": 400,
+    "Exp": 2,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "3",
+        "Name": "청동 도끼",
+        "Type": 0,
+        "Info": "어디선가 사용됬던거 같은 도끼입니다.",
+        "Atk": 5.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 2500
+      }
+    ]
+  },
+  {
+    "Name": "공허충",
+    "Job": "monster",
+    "Level": 3,
+    "Atk": 9.0,
+    "Def": 0,
+    "MaxHp": 10,
+    "MaxMp": 0,
+    "Hp": 10,
+    "Mp": 0,
+    "Gold": 600,
+    "Exp": 3,
+    "SkillList": [
+      {
+        "Name": "임시 몬스터 스킬 1",
+        "AttackBonus": 2.0,
+        "TargetCount": 1,
+        "MpCost": 5
+      }
+    ],
+    "Inventory": [
+      {
+        "Code": "4",
+        "Name": "무쇠갑옷",
+        "Type": 1,
+        "Info": "무쇠로 만들어져 튼튼한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 9,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 4500
+      }
+    ]
+  },
+  {
+    "Name": "대포미니언",
+    "Job": "monster",
+    "Level": 5,
+    "Atk": 8.0,
+    "Def": 0,
+    "MaxHp": 25,
+    "MaxMp": 0,
+    "Hp": 25,
+    "Mp": 0,
+    "Gold": 1000,
+    "Exp": 5,
+    "SkillList": [
+      {
+        "Name": "임시 몬스터 스킬 2",
+        "AttackBonus": 1.5,
+        "TargetCount": 2,
+        "MpCost": 10
+      }
+    ],
+    "Inventory": [
+      {
+        "Code": "3",
+        "Name": "청동 도끼",
+        "Type": 0,
+        "Info": "어디선가 사용됬던거 같은 도끼입니다.",
+        "Atk": 5.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 2500
+      },
+      {
+        "Code": "4",
+        "Name": "무쇠갑옷",
+        "Type": 1,
+        "Info": "무쇠로 만들어져 튼튼한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 9,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 4500
+      }
+    ]
+  }
+]

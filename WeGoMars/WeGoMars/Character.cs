@@ -7,6 +7,14 @@ namespace WeGoMars{
 		public float AttackBonus {get; set; }
 		public int TargetCount { get; set; }
 		public int MpCost { get; set; }
+
+		public Skill(string name, float attackBonus, int targetCount, int mpCost)
+		{
+			Name = name;
+			AttackBonus = attackBonus;
+			TargetCount = targetCount;
+			MpCost = mpCost;
+		}
 	}
 
 	public abstract class Character

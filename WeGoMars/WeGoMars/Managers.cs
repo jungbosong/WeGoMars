@@ -15,7 +15,7 @@ namespace WeGoMars
 
         private static MainScene s_mainScene = new MainScene();
         private static StatusScene s_statusScene = new StatusScene();
-        private static Player s_player = new Player("플레이어", "전사", 1, 10, 5, 100, 50, 1500, 0,
+        private static Player s_player = new Player("플레이어", "전사", 1, 10, 5, 100, 50, 100, 50, 1500, 0,
                       new List<Skill>(), new List<Item>(), new List<Item>(), 0, 0);
 
         public static MainScene MainScene { get { return s_mainScene; } }
