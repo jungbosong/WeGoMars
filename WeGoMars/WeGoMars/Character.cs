@@ -9,26 +9,39 @@ namespace WeGoMars{
 		public int MpCost { get; set; }
 	}
 
-	abstract class Character
+	public abstract class Character
 	{
-		public string Name { get; }
-		public string Job { get; }
-		public int Level { get; }
-		public int Atk { get; }
-		public int Def { get; }
-		public int Hp { get; }
-		public int Mp { get; }
-		public int Gold { get; }
-		public int Exp { get; }
-		public List<Skill> SkillList;
-		public List<Item> Inventory;
+		public string Name { get; set; }
+		public string Job { get; set; }
+		public int Level { get; set; }
+		public int Atk { get; set; }
+		public int Def { get; set; }
+		public int Hp { get; set; }
+		public int Mp { get; set; }
+		public int Gold { get; set; }
+		public int Exp { get; set; }
+		public List<Skill> SkillList { get; set; }
+		public List<Item> Inventory { get; set; }
 
-		public void Attack(int damage);
 
-		public void TakeDamage(int damage);
+		public abstract void Attack(int damage);
 
-		public void DropItem();
+		public abstract void TakeDamage(int damage);
 
-		public bool IsDead();
+		public Item DropItem()
+		{
+			int randomNum = new Random().Next(0, Inventory.Count);
+			Item dropItem = Inventory[randomNum];
+			Inventory.Remove(dropItem);
+			return dropItem;
+		}
+
+		public bool IsDead()
+		{
+			if (this.Hp < 0)
+				return true;
+			else
+				return false;
+		}
 	}
 }
