@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "알파 스트라이크",
+    "AttackBonus": 2.0,
+    "TargetCount": 1,
+    "MpCost": 10
+  },
+  {
+    "Name": "더블 스트라이크",
+    "AttackBonus": 1.5,
+    "TargetCount": 2,
+    "MpCost": 15
+  },
+  {
+    "Name": "열파참",
+    "AttackBonus": 3.0,
+    "TargetCount": 5,
+    "MpCost": 25
+  },
+  {
+    "Name": "돌진",
+    "AttackBonus": 1.5,
+    "TargetCount": 1,
+    "MpCost": 5
+  },
+  {
+    "Name": "돌 던지기",
+    "AttackBonus": 1.2,
+    "TargetCount": 2,
+    "MpCost": 7
+  },
+  {
+    "Name": "할퀴기",
+    "AttackBonus": 1.7,
+    "TargetCount": 1,
+    "MpCost": 10
+  }
+]
