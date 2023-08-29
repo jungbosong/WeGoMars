@@ -65,7 +65,7 @@ namespace WeGoMars
                 string readMonsterString = File.ReadAllText(filePath + "MonsterData.Json");
                 monsters = JsonConvert.DeserializeObject<List<Monster>>(readMonsterString);
             }
-            else 
+            else
             {
                 monsters = new List<Monster>() { new Monster(name: "¹Ì´Ï¾ð", job: "monster", level: 2, atk: 5, def: 0,
                                                                            maxHp: 15, maxMp: 0, hp: 15, mp: 0, gold: 400, exp: 2,
@@ -93,7 +93,7 @@ namespace WeGoMars
             foreach (Item item in itemList)
             {
                 if (item.Code == code)
-                    return item;
+                    return DeepClone(item);
             }
             return null;
         }
@@ -103,7 +103,7 @@ namespace WeGoMars
             foreach (Player player in players)
             {
                 if (player.Name == name)
-                    return player;
+                    return DeepClone(player);
             }
             return null;
         }
@@ -111,7 +111,7 @@ namespace WeGoMars
         public Player GetPlayer(int num)
         {
             if (num >= 0 && num < players.Count)
-                return players[num];
+                return DeepClone(players[num]);
             else
                 return null;
         }
@@ -119,10 +119,55 @@ namespace WeGoMars
         public Monster GetMonster(int num)
         {
             if (num >= 0 && num < monsters.Count)
-                return monsters[num];
+                return DeepClone(monsters[num]);
             else
                 return null;
         }
 
+        public void RemovePlayer(int num)
+        {
+            if (num >= 0 && players.Count > num)
+            {
+                players.RemoveAt(num);
+            }
+        }
+
+        public void InsertPlayer(int num, Player player)
+        {
+            if (num >= 0 && players.Count > num)
+            {
+                players.RemoveAt(num);
+                players.Insert(num, player);
+            }
+        }
+
+        public void AddPlayer(Player player)
+        {
+            players.Add(player);
+        }
+
+        public void SaveAllData()
+        {
+            string ItemData = JsonConvert.SerializeObject(itemList, Formatting.Indented);
+            string SKillData = JsonConvert.SerializeObject(skillList, Formatting.Indented);
+            string PlayerData = JsonConvert.SerializeObject(players, Formatting.Indented);
+            string MonsterData = JsonConvert.SerializeObject(monsters, Formatting.Indented);
+            File.WriteAllText(filePath + "ItemData.Json", ItemData);
+            File.WriteAllText(filePath + "SkillData.Json", SKillData);
+            File.WriteAllText(filePath + "PlayerData.Json", PlayerData);
+            File.WriteAllText(filePath + "MonsterData.Json", MonsterData);
+        }
+
+        T DeepClone<T>(T obj)
+        {
+            if (obj != null)
+            {
+                string serialized = JsonConvert.SerializeObject(obj);
+                T deepCopied = JsonConvert.DeserializeObject<T>(serialized);
+                return deepCopied;
+            }
+            else
+                return default(T);
+        }
     }
 }
