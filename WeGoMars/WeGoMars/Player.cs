@@ -95,37 +95,40 @@ namespace WeGoMars
             return totalDef;
         }
 
-        public void EquipItem(int idx)
+        public void EquipItem(Item item)
         {
-            /*if (EquippedItems.Contains(item))
-                UnEquipItem(item);
+            if (Inventory.Contains(item))
+            {
+                if (EquippedItems.Contains(item))
+                {
+                    UnEquipItem(item);
+                    item.Equipped = false;
+                }
+                else
+                {
+                    foreach (Item equippeditem in EquippedItems)
+                    {
+                        if (equippeditem.Type == item.Type)
+                        {
+                            UnEquipItem(equippeditem);
+                            item.Equipped = false;
+                            break;
+                        }
+                    }
+                    EquippedItems.Add(item);
+                    item.Equipped = true;
+                    MaxHp += item.Hp;
+                    MaxMp += item.Mp;
+                }
+            }
             else
             {
-                foreach (Item equippeditem in EquippedItems)
-                {
-                    if (equippeditem.Type == item.Type)
-                    {
-                        UnEquipItem(equippeditem);
-                    }
-                }
+                Inventory.Add(item);
                 EquippedItems.Add(item);
                 item.Equipped = true;
                 MaxHp += item.Hp;
                 MaxMp += item.Mp;
-            }*/
-            foreach (Item equippeditem in EquippedItems)
-            {
-                if (equippeditem.Type == Inventory[idx].Type && equippeditem.Name == Inventory[idx].Name)
-                {
-                    UnEquipItem(equippeditem);
-                    Inventory[idx].Equipped = false;
-                    return;
-                }
             }
-            EquippedItems.Add(Inventory[idx]);
-            Inventory[idx].Equipped = true;
-            MaxHp += Inventory[idx].Hp;
-            MaxMp += Inventory[idx].Mp;
         }
 
         public void UnEquipItem(Item item)
