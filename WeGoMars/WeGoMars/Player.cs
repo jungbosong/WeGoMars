@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 
 namespace WeGoMars
 {
@@ -12,7 +11,7 @@ namespace WeGoMars
         public int HealthPotionCnt { get; set; }
         public int ManaPotionCnt { get; set; }
 
-        public Player(string name, string job, int level, int atk, int def, int hp, int mp, int gold, int exp,
+        public Player(string name, string job, int level, float atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
                       List<Skill> skillList, List<Item> inventory, List<Item> equippedItems, int healthPotionCnt, int manaPotionCnt)
         {
             Name = name;
@@ -20,6 +19,8 @@ namespace WeGoMars
             Level = level;
             Atk = atk;
             Def = def;
+            MaxHp = maxHp;
+            MaxMp = maxMp;
             Hp = hp;
             Mp = mp;
             Gold = gold;
@@ -41,9 +42,41 @@ namespace WeGoMars
 
         }
 
-        public void GetItem(Item item)
+        public void ObtainItem(Item item)
         {
             Inventory.Add(item);
+        }
+
+        public void GainExp(int exp)
+        {
+
+        }
+
+        void LevelUp()
+        {
+            Level++;
+            Atk += 0.5f;
+            Def++;
+        }
+
+        public float GetTotalAtk()
+        {
+            float totalAtk = Atk;
+            foreach (Item item in EquippedItems)
+            {
+                totalAtk += item.Atk;
+            }
+            return totalAtk;
+        }
+
+        public int GetTotalDef()
+        {
+            int totalDef = Def;
+            foreach (Item item in EquippedItems)
+            {
+                totalDef += item.Def;
+            }
+            return totalDef;
         }
 
         public void EquipItem(Item item)
@@ -56,18 +89,22 @@ namespace WeGoMars
                 {
                     foreach (Item equippeditem in EquippedItems)
                     {
-                        if (equippeditem.ItemType == item.ItemType)
+                        if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
                         }
                     }
                     EquippedItems.Add(item);
+                    MaxHp += item.Hp;
+                    MaxMp += item.Mp;
                 }
             }
             else
             {
                 Inventory.Add(item);
                 EquippedItems.Add(item);
+                MaxHp += item.Hp;
+                MaxMp += item.Mp;
             }
         }
 
@@ -76,8 +113,11 @@ namespace WeGoMars
             if (EquippedItems.Contains(item))
             {
                 EquippedItems.Remove(item);
+                MaxHp -= item.Hp;
+                MaxMp -= item.Mp;
             }
         }
+
         public void BuyItem(Item item)
         {
             if (!Inventory.Contains(item))

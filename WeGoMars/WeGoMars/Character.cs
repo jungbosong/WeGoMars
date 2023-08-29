@@ -7,6 +7,14 @@ namespace WeGoMars{
 		public float AttackBonus {get; set; }
 		public int TargetCount { get; set; }
 		public int MpCost { get; set; }
+
+		public Skill(string name, float attackBonus, int targetCount, int mpCost)
+		{
+			Name = name;
+			AttackBonus = attackBonus;
+			TargetCount = targetCount;
+			MpCost = mpCost;
+		}
 	}
 
 	public abstract class Character
@@ -14,8 +22,10 @@ namespace WeGoMars{
 		public string Name { get; set; }
 		public string Job { get; set; }
 		public int Level { get; set; }
-		public int Atk { get; set; }
+		public float Atk { get; set; }
 		public int Def { get; set; }
+		public int MaxHp { get; set; }
+		public int MaxMp { get; set; }
 		public int Hp { get; set; }
 		public int Mp { get; set; }
 		public int Gold { get; set; }
@@ -38,7 +48,7 @@ namespace WeGoMars{
 
 		public bool IsDead()
 		{
-			if (this.Hp < 0)
+			if (this.Hp <= 0)
 				return true;
 			else
 				return false;
