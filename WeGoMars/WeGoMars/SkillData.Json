@@ -34,5 +34,47 @@
     "AttackBonus": 1.7,
     "TargetCount": 1,
     "MpCost": 10
+  },
+  {
+    "Name": "대지 강타",
+    "AttackBonus": 1.6,
+    "TargetCount": 3,
+    "MpCost": 15
+  },
+  {
+    "Name": "불 뿜기",
+    "AttackBonus": 1.8,
+    "TargetCount": 1,
+    "MpCost": 15
+  },
+  {
+    "Name": "용언 마법",
+    "AttackBonus": 2.0,
+    "TargetCount": 1,
+    "MpCost": 10
+  },
+  {
+    "Name": "드래곤 브레스",
+    "AttackBonus": 2.5,
+    "TargetCount": 1,
+    "MpCost": 20
+  },
+  {
+    "Name": "SNS 하기",
+    "AttackBonus": 1.3,
+    "TargetCount": 1,
+    "MpCost": 5
+  },
+  {
+    "Name": "코인 공격",
+    "AttackBonus": 1.9,
+    "TargetCount": 3,
+    "MpCost": 15
+  },
+  {
+    "Name": "해고 하기",
+    "AttackBonus": 2.3,
+    "TargetCount": 1,
+    "MpCost": 20
   }
 ]
