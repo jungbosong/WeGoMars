@@ -40,8 +40,8 @@
     "Exp": 3,
     "SkillList": [
       {
-        "Name": "임시 몬스터 스킬 1",
-        "AttackBonus": 2.0,
+        "Name": "돌진",
+        "AttackBonus": 1.5,
         "TargetCount": 1,
         "MpCost": 5
       }
@@ -74,10 +74,10 @@
     "Exp": 5,
     "SkillList": [
       {
-        "Name": "임시 몬스터 스킬 2",
-        "AttackBonus": 1.5,
+        "Name": "돌 던지기",
+        "AttackBonus": 1.2,
         "TargetCount": 2,
-        "MpCost": 10
+        "MpCost": 7
       }
     ],
     "Inventory": [
