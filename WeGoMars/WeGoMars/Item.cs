@@ -15,6 +15,7 @@ namespace WeGoMars
         public int Hp { get; }
         public int Mp { get; }
         public int Price { get; }
+        public bool Equipped { get; }
 
         public Item(string code, string name, ItemType type, string info, float atk, int def, int hp, int mp,int price)
         {
@@ -27,6 +28,7 @@ namespace WeGoMars
             Hp = hp;
             Mp = mp;
             Price = price;
+            Equipped = false;
         }
     }
 }

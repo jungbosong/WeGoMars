@@ -9,6 +9,7 @@ namespace WeGoMars
         static void Main(string[] args)
         {
             Managers.MainScene.DisplayMain();
+
         }
     }
 }

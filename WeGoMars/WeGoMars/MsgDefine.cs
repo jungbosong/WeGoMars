@@ -34,5 +34,6 @@ namespace WeGoMars
         public const string NO_MORE = "이미 구매한 아이템입니다.\n";
         public const string LACK_GOLD = "Gold가 부족합니다.\n";
         public const string SUCCESS = "구매를 완료했습니다.\n";
+        public const string START_BATTLE = "전투 시작\n";
     }
 }
