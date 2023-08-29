@@ -104,5 +104,227 @@
         "Price": 4500
       }
     ]
+  },
+  {
+    "Name": "어스름 늑대",
+    "Job": "monster",
+    "Level": 7,
+    "Atk": 11.0,
+    "Def": 0,
+    "MaxHp": 50,
+    "MaxMp": 0,
+    "Hp": 50,
+    "Mp": 0,
+    "Gold": 1400,
+    "Exp": 7,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "5",
+        "Name": "스파르타의 창",
+        "Type": 0,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 창입니다.",
+        "Atk": 7.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 350
+      }
+    ]
+  },
+  {
+    "Name": "칼날부리",
+    "Job": "monster",
+    "Level": 8,
+    "Atk": 15.0,
+    "Def": 0,
+    "MaxHp": 40,
+    "MaxMp": 0,
+    "Hp": 40,
+    "Mp": 0,
+    "Gold": 1600,
+    "Exp": 8,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "6",
+        "Name": "스파르타의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 7500
+      }
+    ]
+  },
+  {
+    "Name": "돌거북",
+    "Job": "monster",
+    "Level": 10,
+    "Atk": 14.0,
+    "Def": 0,
+    "MaxHp": 100,
+    "MaxMp": 0,
+    "Hp": 100,
+    "Mp": 0,
+    "Gold": 2000,
+    "Exp": 10,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "5",
+        "Name": "스파르타의 창",
+        "Type": 0,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 창입니다.",
+        "Atk": 7.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 350
+      },
+      {
+        "Code": "6",
+        "Name": "스파르타의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 7500
+      }
+    ]
+  },
+  {
+    "Name": "블루",
+    "Job": "monster",
+    "Level": 13,
+    "Atk": 20.0,
+    "Def": 0,
+    "MaxHp": 150,
+    "MaxMp": 0,
+    "Hp": 150,
+    "Mp": 0,
+    "Gold": 2600,
+    "Exp": 13,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "7",
+        "Name": "스파르타 왕의 무기",
+        "Type": 0,
+        "Info": "스파르타의 왕이 사용했다는 전설의 창입니다.",
+        "Atk": 20.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 50,
+        "Price": 50000
+      }
+    ]
+  },
+  {
+    "Name": "레드",
+    "Job": "monster",
+    "Level": 15,
+    "Atk": 25.0,
+    "Def": 0,
+    "MaxHp": 150,
+    "MaxMp": 0,
+    "Hp": 150,
+    "Mp": 0,
+    "Gold": 3000,
+    "Exp": 15,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "8",
+        "Name": "스파르타 왕의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 왕이 사용했다는 전설의 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 100,
+        "Mp": 0,
+        "Price": 70000
+      }
+    ]
+  },
+  {
+    "Name": "드래곤",
+    "Job": "monster",
+    "Level": 30,
+    "Atk": 50.0,
+    "Def": 0,
+    "MaxHp": 500,
+    "MaxMp": 0,
+    "Hp": 500,
+    "Mp": 0,
+    "Gold": 6000,
+    "Exp": 30,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "9",
+        "Name": "드래곤 이빨",
+        "Type": 0,
+        "Info": "신화속 존재인 드래곤의 이빨로 만든 무기입니다.",
+        "Atk": 40.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 200,
+        "Price": 100000
+      },
+      {
+        "Code": "10",
+        "Name": "드래곤 비늘 갑옷",
+        "Type": 1,
+        "Info": "신화속 존재인 드래곤의 비늘로 만든 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 25,
+        "Hp": 500,
+        "Mp": 100,
+        "Price": 150000
+      }
+    ]
+  },
+  {
+    "Name": "일론 몬스크 남작",
+    "Job": "monster",
+    "Level": 50,
+    "Atk": 42.0,
+    "Def": 0,
+    "MaxHp": 1000,
+    "MaxMp": 0,
+    "Hp": 1000,
+    "Mp": 0,
+    "Gold": 10000,
+    "Exp": 50,
+    "SkillList": [],
+    "Inventory": [
+      {
+        "Code": "11",
+        "Name": "스페이스 X 검",
+        "Type": 0,
+        "Info": "화성에서 발견된 신화적인 검입니다.",
+        "Atk": 100.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 500,
+        "Price": 400000
+      },
+      {
+        "Code": "12",
+        "Name": "테슬라 갑옷",
+        "Type": 1,
+        "Info": "화성에서 발견된 신화적인 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 30,
+        "Hp": 1000,
+        "Mp": 0,
+        "Price": 500000
+      }
+    ]
   }
 ]
