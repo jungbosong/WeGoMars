@@ -54,15 +54,13 @@ namespace WeGoMars
             Exp += exp;
             for (int i = 1; i <= Level; i++)
             {
-                levelExp += RequiredMaxExp(i);
+                levelExp += LevelUpExp(i);
                 if (Exp >= levelExp)
                     LevelUp();
             }
-
-            
         }
 
-        public int RequiredMaxExp(int level)
+        public int LevelUpExp(int level)
         {
             int reqExp = 10;
             if (level > 1)
