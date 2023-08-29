@@ -1,4 +1,6 @@
 using System;
+using System.Numerics;
+
 namespace WeGoMars
 {
     internal class InventoryScene : Displayer
@@ -26,11 +28,39 @@ namespace WeGoMars
                     Managers.MainScene.DisplayMain();
                     break;
                 case 1:
-                    //DisplayManageEquipment();
+                    DisplayManageEquipment();
                     break;
                 case 2:
                     //DisplaySortItem();
                     break;
+            }
+        }
+
+        public void DisplayManageEquipment()
+        {
+            SetTitle($"{MsgDefine.INVENTORY}-{MsgDefine.MANAGE_EQUIP}");
+            Console.Write(MsgDefine.EXPLAN_EQUIP);
+
+            SetItemList();
+            Console.BackgroundColor = ConsoleColor.Green;
+            Console.Write(itemList[0]);
+            for (int i = 1; i < itemList.Count; i++)
+            {
+                Console.Write($"- {i} {itemList[i]}");
+            }
+            Console.WriteLine();
+            Console.ResetColor();
+
+            SetAction($"0. {MsgDefine.OUT}");
+            int input = CheckValidInput(0, Managers.Player.Inventory.Count);
+            if (input == 0)
+            {
+                DisplayInventory();
+            }
+            else
+            {
+                Managers.Player.EquipItem(Managers.Player.Inventory[--input]);
+                DisplayManageEquipment();
             }
         }
 
@@ -39,7 +69,7 @@ namespace WeGoMars
             itemList.Clear();
             itemList.Add($"{MsgDefine.LIST_ITEM}\n");
 
-            foreach (Item item in Managers.GameData.GetPlayer(0).Inventory)
+            foreach (Item item in Managers.Player.Inventory)
             {
                 string tmp = "";
                 if (item.Equipped)

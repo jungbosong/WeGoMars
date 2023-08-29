@@ -61,10 +61,10 @@ namespace WeGoMars
                         new Skill("더블 스트라이크", 1.5f, 2, 15),
                         new Skill("열파참", 3f, 5, 25)},
                     new List<Item>(){ 
-                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000),
+                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000, true),
                         new Item("2", "수련자 갑옷", ItemType.Armor, "수련에 도움을 주는 갑옷입니다.", 0f, 5, 0, 0, 2500) },
                     new List<Item>(){ 
-                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000)}, 3, 3)};
+                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000, true)}, 3, 3)};
             }
 
             if (File.Exists(filePath + "MonsterData.Json"))

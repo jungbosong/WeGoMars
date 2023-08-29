@@ -95,33 +95,37 @@ namespace WeGoMars
             return totalDef;
         }
 
-        public void EquipItem(Item item)
+        public void EquipItem(int idx)
         {
-            if (Inventory.Contains(item))
-            {
-                if (EquippedItems.Contains(item))
-                    UnEquipItem(item);
-                else
-                {
-                    foreach (Item equippeditem in EquippedItems)
-                    {
-                        if (equippeditem.Type == item.Type)
-                        {
-                            UnEquipItem(equippeditem);
-                        }
-                    }
-                    EquippedItems.Add(item);
-                    MaxHp += item.Hp;
-                    MaxMp += item.Mp;
-                }
-            }
+            /*if (EquippedItems.Contains(item))
+                UnEquipItem(item);
             else
             {
-                Inventory.Add(item);
+                foreach (Item equippeditem in EquippedItems)
+                {
+                    if (equippeditem.Type == item.Type)
+                    {
+                        UnEquipItem(equippeditem);
+                    }
+                }
                 EquippedItems.Add(item);
+                item.Equipped = true;
                 MaxHp += item.Hp;
                 MaxMp += item.Mp;
+            }*/
+            foreach (Item equippeditem in EquippedItems)
+            {
+                if (equippeditem.Type == Inventory[idx].Type && equippeditem.Name == Inventory[idx].Name)
+                {
+                    UnEquipItem(equippeditem);
+                    Inventory[idx].Equipped = false;
+                    return;
+                }
             }
+            EquippedItems.Add(Inventory[idx]);
+            Inventory[idx].Equipped = true;
+            MaxHp += Inventory[idx].Hp;
+            MaxMp += Inventory[idx].Mp;
         }
 
         public void UnEquipItem(Item item)
