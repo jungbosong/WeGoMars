@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 namespace WeGoMars
 {
@@ -49,7 +50,24 @@ namespace WeGoMars
 
         public void GainExp(int exp)
         {
+            int levelExp = 0;
+            Exp += exp;
+            for (int i = 1; i <= Level; i++)
+            {
+                levelExp += RequiredMaxExp(i);
+                if (Exp >= levelExp)
+                    LevelUp();
+            }
 
+            
+        }
+
+        public int RequiredMaxExp(int level)
+        {
+            int reqExp = 10;
+            if (level > 1)
+                reqExp = level * 5 + 15;
+            return reqExp;
         }
 
         void LevelUp()
