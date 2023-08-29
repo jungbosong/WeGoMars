@@ -8,6 +8,7 @@ namespace WeGoMars
     {
         static void Main(string[] args)
         {
+            string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
             Managers.MainScene.DisplayMain();
         }
     }
