@@ -41,7 +41,7 @@ namespace WeGoMars
             {
                 skillList = new List<Skill>() { new Skill("알파 스트라이크", 2f, 1, 10), new Skill("더블 스트라이크", 1.5f, 2, 15),
                                                             new Skill("열파참", 3f, 5, 25),
-                                                            new Skill("임시 몬스터 스킬 1", 2f, 1, 5), new Skill("임시 몬스터 스킬 2", 1.5f, 2, 10)
+                                                            new Skill("돌진", 1.5f, 1, 5), new Skill("돌 던지기", 1.2f, 2, 7)
                                                             };
             }
 
