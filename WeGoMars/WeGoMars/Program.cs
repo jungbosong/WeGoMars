@@ -1,4 +1,6 @@
-﻿using System.Net.NetworkInformation;
+﻿using Newtonsoft.Json;
+using System.Net.NetworkInformation;
+using System.Numerics;
 
 namespace WeGoMars
 {

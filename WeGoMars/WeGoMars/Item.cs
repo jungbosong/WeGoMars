@@ -2,26 +2,30 @@
 
 namespace WeGoMars
 {
+    public enum ItemType { Weapon, Armor }
+
     public class Item
     {
-        public string Name { get; }
         public string Code { get; }
-        public string ItemType { get; }
+        public string Name { get; }
+        public ItemType Type{ get; }
         public string Info { get; }
-        public int Atk { get; }
+        public float Atk { get; }
         public int Def { get; }
         public int Hp { get; }
+        public int Mp { get; }
         public int Price { get; }
 
-        public Item(string name, string code, string itemType, string info, int atk, int def, int hp, int price)
+        public Item(string code, string name, ItemType type, string info, float atk, int def, int hp, int mp,int price)
         {
-            Name = name;
             Code = code;
-            ItemType = itemType;
+            Name = name;
+            Type = type;
             Info = info;
             Atk = atk;
             Def = def;
             Hp = hp;
+            Mp = mp;
             Price = price;
         }
     }
