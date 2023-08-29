@@ -13,7 +13,7 @@ namespace WeGoMars
             SetTitle(MsgDefine.MAIN);
             Console.Write(MsgDefine.OPENING_PHARASE);
 
-            SetAction($"1. {MsgDefine.SHOW_STATE}2. {MsgDefine.INVENTORY}\n3. {MsgDefine.STORE}");
+            SetAction($"1. {MsgDefine.SHOW_STATE}2. {MsgDefine.START_BATTLE}3. {MsgDefine.INVENTORY}\n4. {MsgDefine.STORE}");
             int input = CheckValidInput(1, 3);
             switch (input)
             {
@@ -24,7 +24,7 @@ namespace WeGoMars
                     //DisplayDunjeon();
                     break;
                 case 3:
-                    //DisplayInventory();
+                    Managers.InventoryScene.DisplayInventory();
                     break;
             }
         }

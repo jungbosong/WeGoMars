@@ -100,7 +100,10 @@ namespace WeGoMars
             if (Inventory.Contains(item))
             {
                 if (EquippedItems.Contains(item))
+                {
                     UnEquipItem(item);
+                    item.Equipped = false;
+                }
                 else
                 {
                     foreach (Item equippeditem in EquippedItems)
@@ -108,9 +111,12 @@ namespace WeGoMars
                         if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
+                            item.Equipped = false;
+                            break;
                         }
                     }
                     EquippedItems.Add(item);
+                    item.Equipped = true;
                     MaxHp += item.Hp;
                     MaxMp += item.Mp;
                 }
@@ -119,6 +125,7 @@ namespace WeGoMars
             {
                 Inventory.Add(item);
                 EquippedItems.Add(item);
+                item.Equipped = true;
                 MaxHp += item.Hp;
                 MaxMp += item.Mp;
             }
