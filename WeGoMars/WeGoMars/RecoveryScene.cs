@@ -1,4 +1,3 @@
-using System;
 namespace WeGoMars
 {
     internal class RecoveryScene : Displayer
