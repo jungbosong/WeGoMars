@@ -9,7 +9,6 @@ namespace WeGoMars
     public class Player : Character
     {
 
-        public List<Item> EquippedItems { get; }
         public int HealthPotionCnt { get; set; }
         public int ManaPotionCnt { get; set; }
 
@@ -20,7 +19,7 @@ namespace WeGoMars
         }
 
         public Player(string name, string job, int level, float atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
-                      List<Skill> skillList, List<Item> inventory, List<Item> equippedItems, int healthPotionCnt, int manaPotionCnt)
+                      List<Skill> skillList, List<Item> inventory, int healthPotionCnt, int manaPotionCnt)
         {
             Name = name;
             Job = job;
@@ -35,7 +34,6 @@ namespace WeGoMars
             Exp = exp;
             SkillList = skillList;
             Inventory = inventory;
-            EquippedItems = equippedItems;
             HealthPotionCnt = healthPotionCnt;
             ManaPotionCnt = manaPotionCnt;
         }
@@ -122,9 +120,10 @@ namespace WeGoMars
         public float GetTotalAtk()
         {
             float totalAtk = Atk;
-            foreach (Item item in EquippedItems)
+            foreach (Item item in Inventory)
             {
-                totalAtk += item.Atk;
+                if(item.Equipped)
+                    totalAtk += item.Atk;
             }
             return totalAtk;
         }
@@ -132,9 +131,10 @@ namespace WeGoMars
         public int GetTotalDef()
         {
             int totalDef = Def;
-            foreach (Item item in EquippedItems)
+            foreach (Item item in Inventory)
             {
-                totalDef += item.Def;
+                if (item.Equipped)
+                    totalDef += item.Def;
             }
             return totalDef;
         }
@@ -143,23 +143,19 @@ namespace WeGoMars
         {
             if (Inventory.Contains(item))
             {
-                if (EquippedItems.Contains(item))
+                if (item.Equipped)
                 {
                     UnEquipItem(item);
-                    item.Equipped = false;
                 }
                 else
                 {
-                    foreach (Item equippeditem in EquippedItems)
+                    foreach (Item equippeditem in Inventory)
                     {
                         if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
-                            equippeditem.Equipped = false;
-                            break;
                         }
                     }
-                    EquippedItems.Add(item);
                     item.Equipped = true;
                     MaxHp += item.Hp;
                     MaxMp += item.Mp;
@@ -168,7 +164,6 @@ namespace WeGoMars
             else
             {
                 Inventory.Add(item);
-                EquippedItems.Add(item);
                 item.Equipped = true;
                 MaxHp += item.Hp;
                 MaxMp += item.Mp;
@@ -177,9 +172,9 @@ namespace WeGoMars
 
         public void UnEquipItem(Item item)
         {
-            if (EquippedItems.Contains(item))
+            if (Inventory.Contains(item))
             {
-                EquippedItems.Remove(item);
+                item.Equipped = false;
                 MaxHp -= item.Hp;
                 MaxMp -= item.Mp;
             }
@@ -203,11 +198,7 @@ namespace WeGoMars
         {
             if (Inventory.Contains(item))
             {
-                if (EquippedItems.Contains(item))
-                {
-                    EquippedItems.Remove(item);
-                    item.Equipped = false;
-                }
+                item.Equipped = false;
                 Inventory.Remove(item);
                 Gold += (int) Math.Round(item.Price * 0.85f, 1);
             }

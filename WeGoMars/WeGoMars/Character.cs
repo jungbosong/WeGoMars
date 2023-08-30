@@ -46,6 +46,12 @@ namespace WeGoMars{
 			return dropItem;
 		}
 
+		public void AddSkill(Skill skill)
+		{
+			if(!SkillList.Contains(skill))
+				SkillList.Add(skill);
+		}
+
 		public bool IsDead()
 		{
 			if (this.Hp <= 0)
