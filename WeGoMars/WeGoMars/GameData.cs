@@ -55,17 +55,18 @@ namespace WeGoMars
             }
             else
             {
-                players = new List<Player>() { 
+                players = new List<Player>() {
                     new Player("플레이어", "전사", 1, 10, 5, 100, 50, 100, 50, 1500, 0,
                     new List<Skill>(){
                         new Skill("알파 스트라이크", 2f, 1, 10),
                         new Skill("더블 스트라이크", 1.5f, 2, 15),
                         new Skill("열파참", 3f, 5, 25)},
-                    new List<Item>(){ 
-                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000, true),
-                        new Item("2", "수련자 갑옷", ItemType.Armor, "수련에 도움을 주는 갑옷입니다.", 0f, 5, 0, 0, 2500) },
-                    new List<Item>(){ 
-                        new Item("1", "낡은 검", ItemType.Weapon, "쉽게 볼 수 있는 낡은 검입니다.", 2f, 0, 0, 0, 1000, true)}, 3, 3)};
+                    new List<Item>(){
+                        itemList[1], 
+                        itemList[2]},
+                    new List<Item>(){
+                        itemList[1]},
+                    3, 3) };
             }
 
             if (File.Exists(filePath + "MonsterData.Json"))
@@ -100,6 +101,11 @@ namespace WeGoMars
                     return DeepClone(item);
             }
             return null;
+        }
+
+        public List<Item> GetItemList()
+        {
+            return itemList;
         }
 
         public Player GetPlayer(string name)
