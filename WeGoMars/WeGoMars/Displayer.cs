@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,26 @@ namespace WeGoMars
 
                 DisplayWrongInput();
             }
+        }
+
+        public void WriteItemList(List<string> items)
+        {
+            Console.Write(items[0]);
+            for (int i = 1; i < items.Count; i++)
+            {
+                Console.Write($"- {items[i]}");
+            }
+            Console.WriteLine();
+        }
+
+        public void WriteOptionalItemsList(List<string> items, ConsoleColor color)
+        {
+            Console.BackgroundColor = color;
+            for (int i = 1; i < items.Count; i++)
+            {
+                Console.Write($"-{i}. {items[i]}");
+            }
+            Console.ResetColor();
         }
     }
 }

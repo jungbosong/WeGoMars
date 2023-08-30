@@ -26,6 +26,9 @@ namespace WeGoMars
                 case 3:
                     Managers.InventoryScene.DisplayInventory();
                     break;
+                case 4:
+                    Managers.StoreScene.DisplayStore();
+                    break;
                 case 5:
                     Managers.RecoveryScene.DisplayRecovery();
                     break;
