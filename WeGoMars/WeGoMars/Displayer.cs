@@ -8,16 +8,15 @@ namespace WeGoMars
 {
     internal abstract class Displayer
     {
-        public FontColorChanger fontColorChanger = new FontColorChanger();
         public void SetTitle(string title)
         {
             Console.Clear();
-            fontColorChanger.Write(ConsoleColor.Yellow, title);
+            Managers.FontColorChanger.Write(ConsoleColor.Yellow, title);
         }
 
         public void SetAction(string actions)
         {
-            fontColorChanger.BothgroundWrite(ConsoleColor.Black, ConsoleColor.Cyan, actions);
+            Managers.FontColorChanger.BothgroundWrite(ConsoleColor.Black, ConsoleColor.Cyan, actions);
             Console.WriteLine();
             Console.WriteLine();
             Console.Write(MsgDefine.INPUT_ACTION);
@@ -25,7 +24,7 @@ namespace WeGoMars
 
         public void DisplayWrongInput()
         {
-            fontColorChanger.WriteLine(ConsoleColor.DarkRed, MsgDefine.WRONG_INPUT);
+            Managers.FontColorChanger.WriteLine(ConsoleColor.DarkRed, MsgDefine.WRONG_INPUT);
             Console.Write(MsgDefine.INPUT_ACTION);
         }
 

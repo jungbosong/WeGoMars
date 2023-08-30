@@ -38,17 +38,17 @@ namespace WeGoMars
             myInfo.Clear();
             //Managers.Player.UpdateInfo();
             string tmp = "";
-            if (Managers.Player.Level < 10)
+            if (Managers.GameData.GetPlayer(0).Level < 10)
             {
-                tmp = $"{MsgDefine.LEVEL}0{Managers.Player.Level}\n";
+                tmp = $"{MsgDefine.LEVEL}0{Managers.GameData.GetPlayer(0).Level}\n";
             }
             else
             {
-                tmp = $"{MsgDefine.LEVEL}{Managers.Player.Level}\n";
+                tmp = $"{MsgDefine.LEVEL}{Managers.GameData.GetPlayer(0).Level}\n";
             }
             myInfo.Add(tmp);
 
-            tmp = $"{MsgDefine.JOB} ( {Managers.Player.Job} )\n";
+            tmp = $"{MsgDefine.JOB} ( {Managers.GameData.GetPlayer(0).Job} )\n";
             myInfo.Add(tmp);
 
             /*if (player.increasedAtk == 0)
@@ -73,10 +73,10 @@ namespace WeGoMars
                 myInfo.Add(tmp);
             }*/
 
-            tmp = $"{MsgDefine.HP} : {Managers.Player.Hp}\n";
+            tmp = $"{MsgDefine.HP} : {Managers.GameData.GetPlayer(0).Hp}\n";
             myInfo.Add(tmp);
 
-            tmp = $"{MsgDefine.GOLD} : {Managers.Player.Gold} G\n";
+            tmp = $"{MsgDefine.GOLD} : {Managers.GameData.GetPlayer(0).Gold} G\n";
             myInfo.Add(tmp);
         }
     }

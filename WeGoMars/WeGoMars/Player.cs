@@ -43,6 +43,43 @@ namespace WeGoMars
 
         }
 
+        public void UseHealthPotion(int amount)
+        {
+            if (Hp <= MaxHp - amount)
+            {
+                Hp += amount;
+                HealthPotionCnt--;
+            }
+            else if (Hp > MaxHp - amount && Hp < MaxHp)
+            {
+                Hp = MaxHp;
+                HealthPotionCnt--;
+            }
+        }
+
+        public void UseManaPotion(int amount)
+        {
+            if (Mp <= MaxMp - amount)
+            {
+                Mp += amount;
+                ManaPotionCnt--;
+            }
+            else if (Mp > MaxHp - amount && Mp < MaxMp)
+            {
+                Mp = MaxMp;
+                ManaPotionCnt--;
+            }
+        }
+
+        public void UseFullRecovery(int money)
+        {
+            if (Hp != MaxHp && Mp != MaxMp && Gold >= money)
+            {
+                Gold -= money;
+                Hp = MaxHp;
+                Mp = MaxMp;
+            }
+        }
         public void ObtainItem(Item item)
         {
             Inventory.Add(item);
@@ -100,7 +137,10 @@ namespace WeGoMars
             if (Inventory.Contains(item))
             {
                 if (EquippedItems.Contains(item))
+                {
                     UnEquipItem(item);
+                    item.Equipped = false;
+                }
                 else
                 {
                     foreach (Item equippeditem in EquippedItems)
@@ -108,9 +148,12 @@ namespace WeGoMars
                         if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
+                            item.Equipped = false;
+                            break;
                         }
                     }
                     EquippedItems.Add(item);
+                    item.Equipped = true;
                     MaxHp += item.Hp;
                     MaxMp += item.Mp;
                 }
@@ -119,6 +162,7 @@ namespace WeGoMars
             {
                 Inventory.Add(item);
                 EquippedItems.Add(item);
+                item.Equipped = true;
                 MaxHp += item.Hp;
                 MaxMp += item.Mp;
             }

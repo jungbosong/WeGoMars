@@ -10,6 +10,7 @@ namespace WeGoMars
         {
             string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
             Managers.MainScene.DisplayMain();
+
         }
     }
 }

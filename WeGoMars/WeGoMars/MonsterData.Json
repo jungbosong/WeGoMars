@@ -31,11 +31,11 @@
     "Job": "monster",
     "Level": 3,
     "Atk": 9.0,
-    "Def": 0,
+    "Def": 2,
     "MaxHp": 10,
-    "MaxMp": 0,
+    "MaxMp": 20,
     "Hp": 10,
-    "Mp": 0,
+    "Mp": 20,
     "Gold": 600,
     "Exp": 3,
     "SkillList": [
@@ -65,11 +65,11 @@
     "Job": "monster",
     "Level": 5,
     "Atk": 8.0,
-    "Def": 0,
+    "Def": 5,
     "MaxHp": 25,
-    "MaxMp": 0,
+    "MaxMp": 35,
     "Hp": 25,
-    "Mp": 0,
+    "Mp": 35,
     "Gold": 1000,
     "Exp": 5,
     "SkillList": [
@@ -110,14 +110,21 @@
     "Job": "monster",
     "Level": 7,
     "Atk": 11.0,
-    "Def": 0,
+    "Def": 7,
     "MaxHp": 50,
-    "MaxMp": 0,
+    "MaxMp": 25,
     "Hp": 50,
-    "Mp": 0,
+    "Mp": 25,
     "Gold": 1400,
     "Exp": 7,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "돌진",
+        "AttackBonus": 1.5,
+        "TargetCount": 1,
+        "MpCost": 5
+      }
+    ],
     "Inventory": [
       {
         "Code": "5",
@@ -137,14 +144,21 @@
     "Job": "monster",
     "Level": 8,
     "Atk": 15.0,
-    "Def": 0,
+    "Def": 6,
     "MaxHp": 40,
-    "MaxMp": 0,
+    "MaxMp": 50,
     "Hp": 40,
-    "Mp": 0,
+    "Mp": 50,
     "Gold": 1600,
     "Exp": 8,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "할퀴기",
+        "AttackBonus": 1.7,
+        "TargetCount": 1,
+        "MpCost": 10
+      }
+    ],
     "Inventory": [
       {
         "Code": "6",
@@ -164,14 +178,21 @@
     "Job": "monster",
     "Level": 10,
     "Atk": 14.0,
-    "Def": 0,
+    "Def": 10,
     "MaxHp": 100,
-    "MaxMp": 0,
+    "MaxMp": 75,
     "Hp": 100,
-    "Mp": 0,
+    "Mp": 75,
     "Gold": 2000,
     "Exp": 10,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "대지 강타",
+        "AttackBonus": 1.6,
+        "TargetCount": 2,
+        "MpCost": 15
+      }
+    ],
     "Inventory": [
       {
         "Code": "5",
@@ -202,14 +223,27 @@
     "Job": "monster",
     "Level": 13,
     "Atk": 20.0,
-    "Def": 0,
+    "Def": 13,
     "MaxHp": 150,
-    "MaxMp": 0,
+    "MaxMp": 100,
     "Hp": 150,
-    "Mp": 0,
+    "Mp": 100,
     "Gold": 2600,
     "Exp": 13,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "돌진",
+        "AttackBonus": 1.5,
+        "TargetCount": 1,
+        "MpCost": 5
+      },
+      {
+        "Name": "대지 강타",
+        "AttackBonus": 1.6,
+        "TargetCount": 2,
+        "MpCost": 15
+      }
+    ],
     "Inventory": [
       {
         "Code": "7",
@@ -229,14 +263,27 @@
     "Job": "monster",
     "Level": 15,
     "Atk": 25.0,
-    "Def": 0,
+    "Def": 15,
     "MaxHp": 150,
-    "MaxMp": 0,
+    "MaxMp": 100,
     "Hp": 150,
-    "Mp": 0,
+    "Mp": 100,
     "Gold": 3000,
     "Exp": 15,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "돌진",
+        "AttackBonus": 1.5,
+        "TargetCount": 1,
+        "MpCost": 5
+      },
+      {
+        "Name": "불 뿜기",
+        "AttackBonus": 1.8,
+        "TargetCount": 1,
+        "MpCost": 15
+      }
+    ],
     "Inventory": [
       {
         "Code": "8",
@@ -256,14 +303,33 @@
     "Job": "monster",
     "Level": 30,
     "Atk": 50.0,
-    "Def": 0,
+    "Def": 25,
     "MaxHp": 500,
-    "MaxMp": 0,
+    "MaxMp": 500,
     "Hp": 500,
-    "Mp": 0,
+    "Mp": 500,
     "Gold": 6000,
     "Exp": 30,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "돌진",
+        "AttackBonus": 1.5,
+        "TargetCount": 1,
+        "MpCost": 5
+      },
+      {
+        "Name": "용언 마법",
+        "AttackBonus": 2.0,
+        "TargetCount": 1,
+        "MpCost": 10
+      },
+      {
+        "Name": "드래곤 브레스",
+        "AttackBonus": 2.5,
+        "TargetCount": 1,
+        "MpCost": 20
+      }
+    ],
     "Inventory": [
       {
         "Code": "9",
@@ -272,7 +338,7 @@
         "Info": "신화속 존재인 드래곤의 이빨로 만든 무기입니다.",
         "Atk": 40.0,
         "Def": 0,
-        "Hp": 0,
+        "Hp": ,
         "Mp": 200,
         "Price": 100000
       },
@@ -294,14 +360,33 @@
     "Job": "monster",
     "Level": 50,
     "Atk": 42.0,
-    "Def": 0,
+    "Def": 30,
     "MaxHp": 1000,
-    "MaxMp": 0,
+    "MaxMp": 1000,
     "Hp": 1000,
-    "Mp": 0,
+    "Mp": 1000,
     "Gold": 10000,
     "Exp": 50,
-    "SkillList": [],
+    "SkillList": [
+      {
+        "Name": "SNS 하기",
+        "AttackBonus": 1.3,
+        "TargetCount": 1,
+        "MpCost": 5
+      },
+      {
+        "Name": "코인 공격",
+        "AttackBonus": 1.9,
+        "TargetCount": 3,
+        "MpCost": 15
+      },
+      {
+        "Name": "해고 하기",
+        "AttackBonus": 2.3,
+        "TargetCount": 1,
+        "MpCost": 20
+      }
+    ],
     "Inventory": [
       {
         "Code": "11",
