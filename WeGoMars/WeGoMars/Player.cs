@@ -43,6 +43,43 @@ namespace WeGoMars
 
         }
 
+        public void UseHealthPotion(int amount)
+        {
+            if (Hp <= MaxHp - amount)
+            {
+                Hp += amount;
+                HealthPotionCnt--;
+            }
+            else if (Hp > MaxHp - amount && Hp < MaxHp)
+            {
+                Hp = MaxHp;
+                HealthPotionCnt--;
+            }
+        }
+
+        public void UseManaPotion(int amount)
+        {
+            if (Mp <= MaxMp - amount)
+            {
+                Mp += amount;
+                ManaPotionCnt--;
+            }
+            else if (Mp > MaxHp - amount && Mp < MaxMp)
+            {
+                Mp = MaxMp;
+                ManaPotionCnt--;
+            }
+        }
+
+        public void UseFullRecovery(int money)
+        {
+            if (Hp != MaxHp && Mp != MaxMp && Gold >= money)
+            {
+                Gold -= money;
+                Hp = MaxHp;
+                Mp = MaxMp;
+            }
+        }
         public void ObtainItem(Item item)
         {
             Inventory.Add(item);
