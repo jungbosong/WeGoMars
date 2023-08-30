@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace WeGoMars
 {
@@ -11,6 +12,13 @@ namespace WeGoMars
         public List<Item> EquippedItems { get; }
         public int HealthPotionCnt { get; set; }
         public int ManaPotionCnt { get; set; }
+
+        public enum PurchaseType
+        {
+            NoMore,
+            Success,
+            LackGold,
+        }
 
         public Player(string name, string job, int level, float atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
                       List<Skill> skillList, List<Item> inventory, List<Item> equippedItems, int healthPotionCnt, int manaPotionCnt)
@@ -178,25 +186,43 @@ namespace WeGoMars
             }
         }
 
-        public void BuyItem(Item item)
+        public PurchaseType PurchaseItem(Item item)
         {
-            if (!Inventory.Contains(item))
+            /*if (!Inventory.Contains(item))
             {
                 Inventory.Add(item);
-                this.Gold -= item.Price;
+                if (item.Price <= this.Gold)
+                {
+                    this.Gold -= item.Price;
+                }
+            }*/
+            if (Inventory.Contains(item))
+            {
+                return PurchaseType.NoMore;
+            }
+            else if (Gold < item.Price)
+            {
+                return PurchaseType.LackGold;
+            }
+            else
+            {
+                Gold -= item.Price;
+                Inventory.Add(item);
+                return PurchaseType.Success;
             }
         }
 
-        public void SellItem(Item item, int gold)
+        public void SellItem(Item item)
         {
             if (Inventory.Contains(item))
             {
                 if (EquippedItems.Contains(item))
                 {
                     EquippedItems.Remove(item);
+                    item.Equipped = false;
                 }
                 Inventory.Remove(item);
-                Gold += gold;
+                Gold += (int) Math.Round(item.Price * 0.85f, 1);
             }
         }
     }
