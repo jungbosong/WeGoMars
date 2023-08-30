@@ -11,7 +11,7 @@
         "Hp": 0,
         "Mp": 0,
         "Price": 1000,
-        "Equipped":  true
+        "Equipped": true
       }
     ],
     "HealthPotionCnt": 3,
