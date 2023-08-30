@@ -15,7 +15,6 @@ namespace WeGoMars
 
         public enum PurchaseType
         {
-            NoMore,
             Success,
             LackGold,
         }
@@ -188,19 +187,7 @@ namespace WeGoMars
 
         public PurchaseType PurchaseItem(Item item)
         {
-            /*if (!Inventory.Contains(item))
-            {
-                Inventory.Add(item);
-                if (item.Price <= this.Gold)
-                {
-                    this.Gold -= item.Price;
-                }
-            }*/
-            if (Inventory.Contains(item))
-            {
-                return PurchaseType.NoMore;
-            }
-            else if (Gold < item.Price)
+            if (Gold < item.Price)
             {
                 return PurchaseType.LackGold;
             }

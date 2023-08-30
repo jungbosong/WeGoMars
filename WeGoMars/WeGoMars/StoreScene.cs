@@ -69,9 +69,6 @@ namespace WeGoMars
         {
             switch (result)
             {
-                case PurchaseType.NoMore:
-                    Managers.FontColorChanger.Write(ConsoleColor.DarkRed, $"\n{MsgDefine.NO_MORE}");
-                    break;
                 case PurchaseType.LackGold:
                     Managers.FontColorChanger.Write(ConsoleColor.DarkRed, $"\n{MsgDefine.LACK_GOLD}");
                     break;
@@ -122,15 +119,7 @@ namespace WeGoMars
                 {
                     tmp += string.Format("{0,-15}|{1,-10} +{2}|{3,-30}|", item.Name, MsgDefine.OFFENSIVE_POWER, item.Atk, item.Info);
                 }
-                if (Managers.Player.Inventory.Contains<Item>(item))
-                {
-                    tmp += string.Format("{0,10}\n", MsgDefine.PURCHASED);
-                }
-                else
-                {
-                    tmp += string.Format("{0,10} G\n", item.Price);
-                }
-
+                tmp += string.Format("{0,10} G\n", item.Price);
                 storeItemList.Add(tmp);
             }
         }
