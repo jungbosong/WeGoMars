@@ -6,6 +6,7 @@
         public static Managers Instance { get { return s_instance; } }
 
         private static MainScene s_mainScene = new MainScene();
+        private static DungeonScene s_dungeonScene = new DungeonScene();
         private static StatusScene s_statusScene = new StatusScene();
         private static InventoryScene s_inventoryScene = new InventoryScene();
         private static StoreScene s_storeScene = new StoreScene();
@@ -15,6 +16,7 @@
         private static GameData s_gameData = new GameData();
 
         public static MainScene MainScene { get { return s_mainScene; } }
+        public static DungeonScene DungeonScene { get { return s_dungeonScene; } }
         public static StatusScene StatusScene { get { return s_statusScene; } }
         public static InventoryScene InventoryScene { get { return s_inventoryScene; } }
         public static StoreScene StoreScene { get { return s_storeScene; } }    

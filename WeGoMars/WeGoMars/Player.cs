@@ -155,7 +155,7 @@ namespace WeGoMars
                         if (equippeditem.Type == item.Type)
                         {
                             UnEquipItem(equippeditem);
-                            item.Equipped = false;
+                            equippeditem.Equipped = false;
                             break;
                         }
                     }
