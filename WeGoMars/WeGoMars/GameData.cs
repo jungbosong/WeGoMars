@@ -1,6 +1,7 @@
 
 using Newtonsoft.Json;
-using System.Numerics;
+using System.Diagnostics;
+using System;
 
 namespace WeGoMars
 {
@@ -10,8 +11,8 @@ namespace WeGoMars
         private List<Skill> skillList;
         private List<Player> players;
         private List<Monster> monsters;
-        private string filePath = $"{Directory.GetCurrentDirectory()}\\";
-
+        //private string filePath = $"{Directory.GetCurrentDirectory()}\\";
+        private string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
 
         public GameData()
         {
@@ -131,6 +132,21 @@ namespace WeGoMars
                 return DeepClone(monsters[num]);
             else
                 return null;
+        }
+
+        public int GetPlayerListCount()
+        {
+            return players.Count;
+        }
+
+        public List<string> GetPlayerNameList()
+        {
+            List<string> strings = new List<string>();
+            foreach (Player player in players)
+            {
+                strings.Add(player.Name);
+            }
+            return strings;
         }
 
         public void RemovePlayer(int num)

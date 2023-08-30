@@ -43,5 +43,15 @@ namespace WeGoMars
         public const string USE_HEALTHPOTION = "체력 포션 사용하기";
         public const string USE_MANAPOTION = "마나 포션 사용하기";
         public const string USE_FULLRECOVERY = "전부 회복하기";
+        public const string CHARACTER_SELECT = "캐릭터 고르기";
+        public const string CHARACTER_SETUP = "캐릭터 설정";
+        public const string SELECT_WELCOME = "축하합니다. 화성에 드디어 도착하셨군요.";
+        public const string INPUT_CHARACTERNAME = "원하시는 이름을 설정해주세요\n>>";
+        public const string INPUT_CHARACTERJOB = "원하시는 직업을 설정해주세요.\n>>";
+        public const string JOB_1 = "전사";
+        public const string JOB_2 = "용병";
+        public const string JOB_3 = "병사";
+        public const string JOB_4 = "떠돌이";
+        public const string JOB_5 = "기사";
     }
 }
