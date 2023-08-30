@@ -1,19 +1,5 @@
 [
   {
-    "EquippedItems": [
-      {
-        "Code": "1",
-        "Name": "낡은 검",
-        "Type": 0,
-        "Info": "쉽게 볼 수 있는 낡은 검입니다.",
-        "Atk": 2.0,
-        "Def": 0,
-        "Hp": 0,
-        "Mp": 0,
-        "Price": 1000,
-        "Equipped": true
-      }
-    ],
     "HealthPotionCnt": 3,
     "ManaPotionCnt": 3,
     "Name": "플레이어",

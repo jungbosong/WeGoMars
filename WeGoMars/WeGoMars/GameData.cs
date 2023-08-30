@@ -65,8 +65,6 @@ namespace WeGoMars
                     new List<Item>(){
                         itemList[1], 
                         itemList[2]},
-                    new List<Item>(){
-                        itemList[1]},
                     3, 3) };
             }
 
