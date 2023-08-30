@@ -77,6 +77,7 @@ namespace WeGoMars
                     break;
                 case 5:
                     SetPlayerJob(MsgDefine.JOB_5, 20, 15, 150, 150);
+                    //Managers.Player.AddSkill();
                     break;
             }
 

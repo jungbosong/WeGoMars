@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System;
+using System.Xml.Linq;
 
 namespace WeGoMars
 {
@@ -77,15 +78,15 @@ namespace WeGoMars
             {
                 monsters = new List<Monster>() { 
                     new Monster(name: "미니언", job: "monster", level: 2, atk: 5, def: 0, maxHp: 15, maxMp: 0, hp: 15, mp: 0, gold: 400, exp: 2,
-                        new List<Skill>(){ skillList[3] },
+                        new List<Skill>(){ new Skill("돌진", 1.5f, 1, 5) },
                         new List<Item>() { this.GetItemFromCode("3") }
                         ),
                     new Monster(name: "공허충", job: "monster", level: 3, atk: 9, def: 0, maxHp: 10, maxMp: 0, hp: 10, mp: 0, gold: 600, exp: 3,
-                        new List<Skill>(){ skillList[4]},
+                        new List<Skill>(){ new Skill("돌 던지기", 1.2f, 2, 7)},
                         new List<Item>() { this.GetItemFromCode("4") }
                         ),
                     new Monster(name: "대포미니언", job: "monster", level: 5, atk: 8, def: 0, maxHp: 25, maxMp: 0, hp: 25, mp: 0, gold: 1000, exp: 5,
-                        new List<Skill>(){ skillList[3], skillList[4]},
+                        new List<Skill>(){ new Skill("돌진", 1.5f, 1, 5), new Skill("돌 던지기", 1.2f, 2, 7)},
                         new List<Item>() { this.GetItemFromCode("3"), this.GetItemFromCode("4") }
                         ),
                 };
@@ -100,6 +101,14 @@ namespace WeGoMars
                     return DeepClone(item);
             }
             return null;
+        }
+
+        public Skill GetSkill(int num)
+        {
+            if (num >= 0 && num < skillList.Count)
+                return skillList[num];
+            else
+                return skillList[0];
         }
 
         public Player GetPlayer(string name)
