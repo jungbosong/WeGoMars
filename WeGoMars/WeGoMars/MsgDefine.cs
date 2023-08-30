@@ -12,6 +12,7 @@ namespace WeGoMars
         public const string OFFENSIVE_POWER = "공격력";
         public const string DEFENSIVE_POWER = "방어력";
         public const string HP = "체력";
+        public const string MP = "마나";
         public const string GOLD = "G";
         public const string MAIN = "게임 시작 화면\n";
         public const string OPENING_PHARASE = "스파르타 마을에 오신 여러분 환영합니다.\n이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.\n\n";
@@ -35,5 +36,12 @@ namespace WeGoMars
         public const string LACK_GOLD = "Gold가 부족합니다.\n";
         public const string SUCCESS = "구매를 완료했습니다.\n";
         public const string START_BATTLE = "전투 시작\n";
+        public const string RECOVERY = "회복";
+        public const string RECOVERY_HEALTHPOTION = "체력 포션을 사용하면 체력을 회복 할 수 있습니다.";
+        public const string RECOVERY_MANAPOTION = "마나 포션을 사용하면 마나를 회복 할 수 있습니다.";
+        public const string RECOVERY_FULLRECOVERY = "를 내면 전부 회복할 수 있습니다.";
+        public const string USE_HEALTHPOTION = "체력 포션 사용하기";
+        public const string USE_MANAPOTION = "마나 포션 사용하기";
+        public const string USE_FULLRECOVERY = "전부 회복하기";
     }
 }
