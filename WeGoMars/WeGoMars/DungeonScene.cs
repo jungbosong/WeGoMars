@@ -168,7 +168,7 @@ namespace WeGoMars
                     DisplayDungeon(monster);
                     break;
                 case 1:
-                    Managers.Player.UseHealthPotion(50);        // 포션회복량을 일단은 50
+                    Managers.Player.UseHealthPotion(30);
                     Console.WriteLine("체력이 50 회복되었습니다.");
                     ToMonsterTurn(monster);
                     break;
