@@ -34,9 +34,9 @@ namespace WeGoMars{
 		public List<Item> Inventory { get; set; }
 
 
-		public abstract void Attack(int damage);
+		public abstract float Attack();
 
-		public abstract void TakeDamage(int damage);
+		public abstract void TakeDamage(float damage);
 
 		public Item DropItem()
 		{

@@ -1,6 +1,8 @@
 
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
 namespace WeGoMars
 {
@@ -33,14 +35,27 @@ namespace WeGoMars
             ManaPotionCnt = manaPotionCnt;
         }
 
-        public override void Attack(int damage)
+        public override float Attack()
         {
 
+            Random random = new Random();
+            float per =random.Next(90,111)/100; //10%
+            float damage = ( GetTotalAtk() *per);
+
+            return damage;
         }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(float damage)
         {
-
+            int d = Convert.ToInt32(Math.Round(damage));
+            if (damage > 0)
+            {
+                Hp -= d;
+                if (Hp < 0)
+                {
+                    Hp = 0;
+                }
+            }
         }
 
         public void ObtainItem(Item item)

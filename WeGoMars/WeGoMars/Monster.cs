@@ -20,12 +20,12 @@ namespace WeGoMars
             Inventory = inventory;
         }
 
-        public override void Attack(int damage)
+        public override float Attack()
         {
 
         }
 
-        public override void TakeDamage(int damage)
+        public override void TakeDamage(float damage)
         {
 
         }
