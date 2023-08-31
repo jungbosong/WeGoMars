@@ -366,26 +366,47 @@ namespace WeGoMars
                 case 1:
                     if (Managers.Player.HealthPotionCnt > 0)
                     {
-                        Managers.Player.UseHealthPotion(MsgDefine.HP_POTION_AMOUNT);
-                        Console.WriteLine($"체력이 {MsgDefine.HP_POTION_AMOUNT} 회복되었습니다.");
-                        ToMonsterTurn(monster);
+                        if (Managers.Player.Hp == Managers.Player.MaxHp)
+                        {
+                            Console.WriteLine("이미 체력이 가득 차있습니다.");
+                            Thread.Sleep(1000);
+                            DisplayPlayerItem(monster);
+                        }
+                        else
+                        {
+                            Managers.Player.UseHealthPotion(MsgDefine.HP_POTION_AMOUNT);
+                            Console.WriteLine($"체력이 {MsgDefine.HP_POTION_AMOUNT} 회복되었습니다.");
+                            ToMonsterTurn(monster);
+                        }                     
                     }
                     else
                     {
-                        Console.WriteLine("포션이 없습니다.");  
+                        Console.WriteLine("포션이 없습니다."); 
+                        Thread.Sleep(1000);
                         DisplayPlayerItem(monster);
                     }
                     break;
                 case 2:
                     if (Managers.Player.ManaPotionCnt > 0)
                     {
-                        Managers.Player.UseManaPotion(MsgDefine.MP_POTION_AMOUNT);
-                        Console.WriteLine($"마나가 {MsgDefine.MP_POTION_AMOUNT} 회복되었습니다.");
-                        ToMonsterTurn(monster);
+                        if (Managers.Player.Mp == Managers.Player.MaxMp)
+                        {
+                            Console.WriteLine("이미 마나가 가득 차있습니다.");
+                            Thread.Sleep(1000);
+                            DisplayPlayerItem(monster);
+                        }
+                        else
+                        {
+                            Managers.Player.UseManaPotion(MsgDefine.MP_POTION_AMOUNT);
+                            Console.WriteLine($"마나가 {MsgDefine.MP_POTION_AMOUNT} 회복되었습니다.");
+                            ToMonsterTurn(monster);
+                        }
+                        
                     }
                     else
                     {
                         Console.WriteLine("포션이 없습니다.");
+                        Thread.Sleep(1000);
                         DisplayPlayerItem(monster);
                     }
 
