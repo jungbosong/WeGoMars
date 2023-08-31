@@ -25,12 +25,11 @@ namespace WeGoMars
             return Atk;
         }
 
-        public override void TakeDamage(float damage)
+        public override void TakeDamage(int damage)
         {
-            int d = Convert.ToInt32(Math.Round(damage));
             if (damage > 0)
             {
-                Hp -= d;
+                Hp -= damage;
                 if (Hp < 0)
                 {
                     Hp = 0;

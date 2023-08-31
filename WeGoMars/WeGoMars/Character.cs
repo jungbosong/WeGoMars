@@ -36,7 +36,7 @@ namespace WeGoMars{
 
 		public abstract float Attack();
 
-		public abstract void TakeDamage(float damage);
+		public abstract void TakeDamage(int damage);
 
 		public Item DropItem()
 		{

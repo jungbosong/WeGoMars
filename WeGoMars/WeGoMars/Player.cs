@@ -37,24 +37,24 @@ namespace WeGoMars
         {
 
             Random random = new Random();
-            float per =random.Next(90,111)/100; //10%
+            float per =random.Next(90,111)/100f; //10%
             float damage = ( GetTotalAtk() *per);
 
             return damage;
         }
 
-        public override void TakeDamage(float damage)
+        public override void TakeDamage(int damage)
         {
-            int d = Convert.ToInt32(Math.Round(damage));
             if (damage > 0)
             {
-                Hp -= d;
+                Hp -= damage;
                 if (Hp < 0)
                 {
                     Hp = 0;
                 }
             }
         }
+
 
         public void UseHealthPotion(int amount)
         {

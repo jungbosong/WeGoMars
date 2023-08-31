@@ -59,5 +59,72 @@
         "Equipped": false
       }
     ]
+  },
+  {
+    "HealthPotionCnt": 3,
+    "ManaPotionCnt": 3,
+    "Name": "13",
+    "Job": "전사",
+    "Level": 1,
+    "Atk": 10.0,
+    "Def": 5,
+    "MaxHp": 100,
+    "MaxMp": 50,
+    "Hp": 100,
+    "Mp": 50,
+    "Gold": 1500,
+    "Exp": 0,
+    "SkillList": [
+      {
+        "Name": "알파 스트라이크",
+        "AttackBonus": 2.0,
+        "TargetCount": 1,
+        "MpCost": 10
+      },
+      {
+        "Name": "더블 스트라이크",
+        "AttackBonus": 1.5,
+        "TargetCount": 2,
+        "MpCost": 15
+      },
+      {
+        "Name": "열파참",
+        "AttackBonus": 3.0,
+        "TargetCount": 5,
+        "MpCost": 25
+      },
+      {
+        "Name": "돌 던지기",
+        "AttackBonus": 1.2,
+        "TargetCount": 2,
+        "MpCost": 7
+      }
+    ],
+    "Inventory": [
+      {
+        "Code": "1",
+        "Name": "낡은 검",
+        "Type": 0,
+        "Info": "쉽게 볼 수 있는 낡은 검입니다.",
+        "Atk": 2.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 1000,
+        "Equipped": true
+      },
+      {
+        "Code": "2",
+        "Name": "수련자 갑옷",
+        "Type": 1,
+        "Info": "수련에 도움을 주는 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 5,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 2500,
+        "Equipped": false
+      }
+    ]
   }
 ]
