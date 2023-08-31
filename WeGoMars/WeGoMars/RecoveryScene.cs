@@ -2,9 +2,9 @@ namespace WeGoMars
 {
     internal class RecoveryScene : Displayer
     {
-        int recoveryCost = 1000;
-        int healingHealth = 30;
-        int healingMana = 25;
+        int recoveryCost = MsgDefine.FULLRECOVERY_COST;
+        int healingHealth = MsgDefine.HP_POTION_AMOUNT;
+        int healingMana = MsgDefine.MP_POTION_AMOUNT;
 
 		public void DisplayRecovery()
 		{
