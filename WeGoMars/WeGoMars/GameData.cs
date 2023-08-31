@@ -149,14 +149,14 @@ namespace WeGoMars
             return players.Count;
         }
 
-        public List<string> GetPlayerNameList()
+        public List<(string, string, int)> GetPlayersSimpleInfoList()
         {
-            List<string> strings = new List<string>();
+            List<(string, string, int)> playersSimpleinfoList = new List<(string, string, int)>();
             foreach (Player player in players)
             {
-                strings.Add(player.Name);
+                playersSimpleinfoList.Add((player.Name, player.Job, player.Level));
             }
-            return strings;
+            return playersSimpleinfoList;
         }
 
         public void RemovePlayer(int num)
