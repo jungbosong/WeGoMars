@@ -23,11 +23,24 @@ namespace WeGoMars
         public override float Attack()
         {
 
+            Random random = new Random();
+            float per = random.Next(90, 111) / 100; //10%
+            float damage = (Atk * per);
+
+            return damage;
         }
 
         public override void TakeDamage(float damage)
         {
-
+            int d = Convert.ToInt32(Math.Round(damage));
+            if (damage > 0)
+            {
+                Hp -= d;
+                if (Hp < 0)
+                {
+                    Hp = 0;
+                }
+            }
         }
     }
 }
