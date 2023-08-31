@@ -320,7 +320,7 @@ namespace WeGoMars
                                     Console.Write("대상으로 지정할 수 없습니다. \n>>");
                                 }
                             }
-                            break;
+                            
                         }
                         else
                         {
