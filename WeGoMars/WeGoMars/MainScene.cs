@@ -21,7 +21,7 @@ namespace WeGoMars
                     Managers.StatusScene.DisplayStatus();
                     break;
                 case 2:
-                    Managers.DungeonScene.DisplayDungeonFirst(Managers.DungeonScene.SetMonster());
+                    Managers.DungeonScene.DisplayDungeonSelect();
                     break;
                 case 3:
                     Managers.InventoryScene.DisplayInventory();
