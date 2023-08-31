@@ -63,7 +63,14 @@ namespace WeGoMars
             myInfo.Add($"\n{MsgDefine.LIST_SKILL}");
             foreach (Skill skill in Managers.Player.SkillList)
             {
-                myInfo.Add($"{skill.Name} - MP: {skill.MpCost}\n\t{MsgDefine.OFFENSIVE_POWER} * {skill.AttackBonus} 로 {skill.TargetCount}명의 적을 공격합니다.\n");
+                if (skill.TargetCount > 1)
+                {
+                    myInfo.Add($"{skill.Name} - MP: {skill.MpCost}\n\t{MsgDefine.OFFENSIVE_POWER} * {skill.AttackBonus} 로 {skill.TargetCount}명의 적을 랜덤으로 1회 공격합니다.\n");
+                }
+                else
+                {
+                    myInfo.Add($"{skill.Name} - MP: {skill.MpCost}\n\t{MsgDefine.OFFENSIVE_POWER} * {skill.AttackBonus} 로 {skill.TargetCount}명의 적을 공격합니다.\n");
+                }
             }
         }
     }
