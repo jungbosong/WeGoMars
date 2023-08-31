@@ -13,7 +13,7 @@ namespace WeGoMars
             Console.WriteLine();
 
             SetItemList();
-            WriteItemList(itemList);
+            WriteItemList(0, 4, itemList);
 
             SetAction($"1. {MsgDefine.MANAGE_EQUIP}0. {MsgDefine.OUT}");
             //2. {MsgDefine.SORT_ITEM}
@@ -38,7 +38,7 @@ namespace WeGoMars
             Console.Write(MsgDefine.EXPLAN_EQUIP);
 
             SetItemList();
-            WriteOptionalItemsList(itemList, ConsoleColor.Green);
+            WriteOptionalItemsList(0, 10, itemList, ConsoleColor.Green);
 
             SetAction($"0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, Managers.Player.Inventory.Count);
