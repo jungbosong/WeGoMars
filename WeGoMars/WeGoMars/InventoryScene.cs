@@ -15,8 +15,9 @@ namespace WeGoMars
             SetItemList();
             WriteItemList(itemList);
 
-            SetAction($"1. {MsgDefine.MANAGE_EQUIP}2. {MsgDefine.SORT_ITEM}0. {MsgDefine.OUT}");
-            int input = CheckValidInput(0, 2);
+            SetAction($"1. {MsgDefine.MANAGE_EQUIP}0. {MsgDefine.OUT}");
+            //2. {MsgDefine.SORT_ITEM}
+            int input = CheckValidInput(0, 1);
             switch (input)
             {
                 case 0:
