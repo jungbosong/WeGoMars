@@ -27,5 +27,6 @@
         public static FontColorChanger FontColorChanger { get { return s_fontColorChanger; } }
         public static GameData GameData { get { return s_gameData; } }
         public static Player Player = GameData.GetPlayer(0);
+
     }
 }
