@@ -12,9 +12,10 @@ namespace WeGoMars
 {
     internal class DungeonScene : Displayer
     {
+        int oldHp = Managers.Player.Hp;
+
         public void DisplayDungeon(List<Monster> monster)           // 몬스터정보, 내정보 출력, 행동지정 
         {
-
             DungeonCommonDisplay(monster);
             Console.WriteLine("1. 공격");
             Console.WriteLine("2. 스킬");
@@ -35,7 +36,7 @@ namespace WeGoMars
                     break;
             }
         }
-        public List<Monster> SetMonster()
+        public List<Monster> SetMonster()           // 무작위로 몬스터 생성
         {
             Random random = new Random();
             List<Monster> monster = new List<Monster>();
@@ -147,9 +148,7 @@ namespace WeGoMars
                             break;
                     }
                     break;
-
             }
-
         }
         public void DisplayPlayerItem(List<Monster> monster)
         {
@@ -214,7 +213,7 @@ namespace WeGoMars
             Console.WriteLine();
             Console.WriteLine("[캐릭터 정보]");
             Console.WriteLine($"Lv.{Managers.Player.Level} {Managers.Player.Name}");              // 레벨업 구현 어떻게 할지
-            Console.WriteLine($"HP->{Managers.Player.Hp}");           // 던전 입장시의 hp를 어떻게 할지 생각
+            Console.WriteLine($"HP {oldHp} -> {Managers.Player.Hp}");           // 던전 입장시의 hp를 어떻게 할지 생각
             Console.WriteLine($"{Managers.Player.Exp} -> {finalExp}");
             Managers.Player.Exp = finalExp;
             Console.WriteLine();
