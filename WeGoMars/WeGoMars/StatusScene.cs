@@ -36,48 +36,35 @@ namespace WeGoMars
         void SetStatus()
         {
             myInfo.Clear();
-            //Managers.Player.UpdateInfo();
-            string tmp = "";
-            if (Managers.GameData.GetPlayer(0).Level < 10)
+            
+            if (Managers.Player.Level < 10)
             {
-                tmp = $"{MsgDefine.LEVEL}0{Managers.GameData.GetPlayer(0).Level}\n";
+                myInfo.Add($"{MsgDefine.LEVEL}0{Managers.Player.Level}\n");
             }
             else
             {
-                tmp = $"{MsgDefine.LEVEL}{Managers.GameData.GetPlayer(0).Level}\n";
+                myInfo.Add($"{MsgDefine.LEVEL}{Managers.Player.Level}\n");
             }
-            myInfo.Add(tmp);
+            
+            myInfo.Add($"{MsgDefine.NICKNAME} {Managers.Player.Name}\n");
 
-            tmp = $"{MsgDefine.JOB} ( {Managers.GameData.GetPlayer(0).Job} )\n";
-            myInfo.Add(tmp);
+            myInfo.Add($"{MsgDefine.JOB} ( {Managers.Player.Job} )\n");
 
-            /*if (player.increasedAtk == 0)
+            myInfo.Add($"{MsgDefine.HP} : {Managers.Player.Hp}\n");
+
+            myInfo.Add($"{MsgDefine.MP} : {Managers.Player.Mp}\n");
+
+            myInfo.Add($"{MsgDefine.OFFENSIVE_POWER} : {Managers.Player.GetTotalAtk()}(+{Managers.Player.GetTotalAtk() - Managers.Player.Atk})\n");
+
+            myInfo.Add($"{MsgDefine.DEFENSIVE_POWER} : {Managers.Player.GetTotalDef()}(+{Managers.Player.GetTotalDef() - Managers.Player.Def})\n");
+
+            myInfo.Add($"{MsgDefine.GOLD_IN_HAND} : {Managers.Player.Gold} {MsgDefine.GOLD}\n");
+            
+            myInfo.Add($"\n{MsgDefine.LIST_SKILL}");
+            foreach (Skill skill in Managers.Player.SkillList)
             {
-                tmp = $"{MsgDefine.OFFENSIVE_POWER} : {player.atk}\n";
-                myInfo.Add(tmp);
+                myInfo.Add($"{skill.Name} - MP: {skill.MpCost}\n\t{MsgDefine.OFFENSIVE_POWER} * {skill.AttackBonus} 로 {skill.TargetCount}명의 적을 공격합니다.\n");
             }
-            else
-            {
-                tmp = $"{MsgDefine.OFFENSIVE_POWER} : {player.atk} (+{player.increasedAtk})\n";
-                myInfo.Add(tmp);
-            }
-
-            if (player.increasedDef == 0)
-            {
-                tmp = $"{MsgDefine.DEFENSIVE_POWER} : {player.def}\n";
-                myInfo.Add(tmp);
-            }
-            else
-            {
-                tmp = $"{MsgDefine.DEFENSIVE_POWER} : {player.def} (+{player.increasedDef})\n";
-                myInfo.Add(tmp);
-            }*/
-
-            tmp = $"{MsgDefine.HP} : {Managers.GameData.GetPlayer(0).Hp}\n";
-            myInfo.Add(tmp);
-
-            tmp = $"{MsgDefine.GOLD} : {Managers.GameData.GetPlayer(0).Gold} G\n";
-            myInfo.Add(tmp);
         }
     }
 }
