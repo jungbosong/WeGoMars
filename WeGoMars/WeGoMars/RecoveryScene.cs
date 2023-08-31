@@ -2,12 +2,11 @@ namespace WeGoMars
 {
     internal class RecoveryScene : Displayer
     {
-        int recoveryCost = MsgDefine.FULLRECOVERY_COST;
-        int healingHealth = MsgDefine.HP_POTION_AMOUNT;
-        int healingMana = MsgDefine.MP_POTION_AMOUNT;
-
 		public void DisplayRecovery()
 		{
+            int recoveryCost = MsgDefine.FULLRECOVERY_COST * Managers.Player.Level;
+            int healingHealth = MsgDefine.HP_POTION_AMOUNT;
+            int healingMana = MsgDefine.MP_POTION_AMOUNT;
             SetTitle($"{MsgDefine.RECOVERY}\n");
             Console.Write($"{MsgDefine.RECOVERY_HEALTHPOTION} 회복량은 ");
             Managers.FontColorChanger.Write(ConsoleColor.Magenta, $"{healingHealth}");

@@ -192,7 +192,7 @@ namespace WeGoMars
             File.WriteAllText(filePath + "MonsterData.Json", MonsterData);
         }
 
-        T DeepClone<T>(T obj)
+        public T DeepClone<T>(T obj)
         {
             if (obj != null)
             {

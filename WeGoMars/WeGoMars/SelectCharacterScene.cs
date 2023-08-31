@@ -14,7 +14,7 @@ namespace WeGoMars
 
             if (input == 0)
             {
-                Managers.SelectCharacterScene.DisplaySetupCharacter();
+                Managers.SelectCharacterScene.DisplaySetupCharacterName();
             }
             else
             {
@@ -22,7 +22,7 @@ namespace WeGoMars
             }
         }
 
-        public void DisplaySetupCharacter()
+        public void DisplaySetupCharacterName()
         {
             SetTitle(MsgDefine.CHARACTER_SETUP);
             Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
@@ -38,6 +38,7 @@ namespace WeGoMars
                     Managers.FontColorChanger.Write(ConsoleColor.Cyan, name);
                     Console.WriteLine(" 입니다.\n");
                     Managers.Player.Name = name;
+                    DisplaySetupCharacterJob();
                 }
                 else
                 {
@@ -45,9 +46,17 @@ namespace WeGoMars
                     Console.Write(">>");
                 }
             }
+        }
+
+        public void DisplaySetupCharacterJob()
+        {
+            SetTitle(MsgDefine.CHARACTER_SETUP);
+            Console.WriteLine();
+            Managers.FontColorChanger.Write(ConsoleColor.Cyan, $"{Managers.Player.Name}");
+            Console.WriteLine($"{MsgDefine.WELCOME_NAME}\n");
 
             int x = 0;
-            int y = 9;
+            int y = 4;
             int space = 15;
             DisplayJob(x, y, ConsoleColor.Gray, MsgDefine.JOB_1, 10, 5, 100, 50);
             DisplayJob(x + space, y, ConsoleColor.Magenta, MsgDefine.JOB_2, 8, 7, 80, 70);
@@ -58,7 +67,7 @@ namespace WeGoMars
 
             SetAction($"1. {MsgDefine.JOB_1}\n2. {MsgDefine.JOB_2}\n3. {MsgDefine.JOB_3}\n4. {MsgDefine.JOB_4}\n5. {MsgDefine.JOB_5}\n0. {MsgDefine.OUT}");
 
-            Console.SetCursorPosition(0, 23);
+            Console.SetCursorPosition(0, y + 14);
             Console.Write(MsgDefine.INPUT_CHARACTERJOB);
 
             int input = CheckValidInput(0, 5);
@@ -120,7 +129,7 @@ namespace WeGoMars
             Console.Write(" ) ");
             Console.WriteLine($" 입니다.\n\n{MsgDefine.OFFENSIVE_POWER} : {Managers.Player.Atk}\n{MsgDefine.DEFENSIVE_POWER} : {Managers.Player.Def}\n" +
                                             $"{MsgDefine.HP}   : {Managers.Player.Hp}\n{MsgDefine.MP}   : {Managers.Player.Mp}\n");
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
 
         public void SetPlayerJob(string job, int atk, int def, int hp, int mp)

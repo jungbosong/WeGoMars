@@ -49,6 +49,7 @@ namespace WeGoMars
         public const string CHARACTER_SELECT = "캐릭터 고르기";
         public const string CHARACTER_SETUP = "캐릭터 설정";
         public const string WELCOME_MSG = "축하합니다. 화성에 드디어 도착하셨군요.";
+        public const string WELCOME_NAME = "님 화성에 오신것을 환영합니다. 여기서 직업을 고를 수 있습니다.";
         public const string INPUT_CHARACTERNAME = "원하시는 이름을 설정해주세요\n>>";
         public const string INPUT_CHARACTERJOB = "원하시는 직업을 설정해주세요.\n>>";
         public const string JOB_1 = "전사";

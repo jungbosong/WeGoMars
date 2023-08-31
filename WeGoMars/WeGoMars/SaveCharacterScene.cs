@@ -39,13 +39,13 @@
             }
             else if (input == playersCount)
             {
-                Managers.GameData.AddPlayer(Managers.Player);
+                Managers.GameData.AddPlayer(Managers.GameData.DeepClone(Managers.Player));
                 Managers.GameData.SaveAllData();
                 Managers.SaveCharacterScene.DisplaySave();
             }
             else
             {
-                Managers.GameData.InsertPlayer(input, Managers.Player);
+                Managers.GameData.InsertPlayer(input, Managers.GameData.DeepClone(Managers.Player));
                 Managers.GameData.SaveAllData();
                 Managers.SaveCharacterScene.DisplaySave();
             }
