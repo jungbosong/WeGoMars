@@ -9,9 +9,10 @@ namespace WeGoMars
         static void Main(string[] args)
         {
             string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
-            Managers.SelectCharacterScene.DisplaySelectCharacter();
+            //Managers.SelectCharacterScene.DisplaySelectCharacter();
+            //string PlayerData = JsonConvert.SerializeObject(Managers.Player, Formatting.Indented);
+            //Console.WriteLine(PlayerData);
             Managers.MainScene.DisplayMain();
-
         }
     }
 }

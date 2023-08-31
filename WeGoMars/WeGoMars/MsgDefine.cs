@@ -55,6 +55,9 @@ namespace WeGoMars
         public const string JOB_5 = "기사";
         public const string CHARACTER_SAVE = "캐릭터 저장하기";
         public const string SAVE_SCENE = "현재 플레이 중인 캐릭터를 저장할 수 있습니다.";
+        public const string SAVE_NEW = "새로 저장하기";
+        public const string CHARACTER_DELETE = "캐릭터 삭제하기";
+        public const string DELETE_SCENE = "현재 저장중인 캐릭터를 삭제할 수 있습니다.";
         public const int FULLRECOVERY_COST = 1000;
         public const int HP_POTION_AMOUNT = 30;
         public const int MP_POTION_AMOUNT = 25;

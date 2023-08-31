@@ -13,8 +13,8 @@ namespace WeGoMars
             SetTitle(MsgDefine.MAIN);
             Console.Write(MsgDefine.OPENING_PHARASE);
 
-            SetAction($"1. {MsgDefine.SHOW_STATE}2. {MsgDefine.START_BATTLE}3. {MsgDefine.INVENTORY}\n4. {MsgDefine.STORE}\n5. {MsgDefine.RECOVERY}");
-            int input = CheckValidInput(1, 5);
+            SetAction($"1. {MsgDefine.SHOW_STATE}2. {MsgDefine.START_BATTLE}3. {MsgDefine.INVENTORY}\n4. {MsgDefine.STORE}\n5. {MsgDefine.RECOVERY}\n6. {MsgDefine.CHARACTER_SAVE}");
+            int input = CheckValidInput(1, 6);
             switch (input)
             {
                 case 1:
@@ -31,6 +31,9 @@ namespace WeGoMars
                     break;
                 case 5:
                     Managers.RecoveryScene.DisplayRecovery();
+                    break;
+                case 6:
+                    Managers.SaveCharacterScene.DisplaySaveCharacter();
                     break;
             }
         }
