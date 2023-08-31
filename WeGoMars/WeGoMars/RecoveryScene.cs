@@ -11,7 +11,7 @@ namespace WeGoMars
             SetTitle($"{MsgDefine.RECOVERY}\n");
             Console.Write($"{MsgDefine.RECOVERY_HEALTHPOTION} 회복량은 ");
             Managers.FontColorChanger.Write(ConsoleColor.Magenta, $"{healingHealth}");
-            Console.Write(" 입니다. (남은 체력 포션: ");
+            Console.Write($" 입니다. (남은 {MsgDefine.HP} 포션: ");
             if (Managers.Player.HealthPotionCnt <= 0)
                 Managers.FontColorChanger.Write(ConsoleColor.Red, $"{Managers.Player.HealthPotionCnt}");
             else
@@ -19,7 +19,7 @@ namespace WeGoMars
             Console.WriteLine(" )");
             Console.Write($"{MsgDefine.RECOVERY_MANAPOTION} 회복량은 ");
             Managers.FontColorChanger.Write(ConsoleColor.Magenta, $"{healingMana}");
-            Console.Write(" 입니다. (남은 마나 포션: ");
+            Console.Write($" 입니다. (남은 {MsgDefine.MP} 포션: ");
             if (Managers.Player.ManaPotionCnt <= 0)
                 Managers.FontColorChanger.Write(ConsoleColor.Red, $"{Managers.Player.ManaPotionCnt}");
             else

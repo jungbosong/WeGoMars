@@ -56,7 +56,6 @@ namespace WeGoMars
             }
         }
 
-
         public void UseHealthPotion(int amount)
         {
             if (Hp <= MaxHp - amount)

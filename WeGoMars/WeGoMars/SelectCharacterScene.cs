@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks.Dataflow;
-
+﻿
 namespace WeGoMars
 {
     internal class SelectCharacterScene : Displayer
@@ -7,7 +6,7 @@ namespace WeGoMars
         public void DisplaySelectCharacter()
         {
             SetTitle(MsgDefine.CHARACTER_SELECT);
-            Console.WriteLine($"\n{MsgDefine.SELECT_WELCOME}\n");
+            Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
 
             string action = "";
             int playersCount = Managers.GameData.GetPlayerListCount();
@@ -33,7 +32,7 @@ namespace WeGoMars
         public void DisplaySetupCharacter()
         {
             SetTitle(MsgDefine.CHARACTER_SETUP);
-            Console.WriteLine($"\n{MsgDefine.SELECT_WELCOME}\n");
+            Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
             Console.Write(MsgDefine.INPUT_CHARACTERNAME);
             string name = Console.ReadLine();
             Console.Write($"\n당신의 이름은 ");
@@ -65,27 +64,34 @@ namespace WeGoMars
                     break;
                 case 1:
                     SetPlayerJob(MsgDefine.JOB_1, 10, 5, 100, 50);
+                    DIsplaySelect();
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(4));
                     break;
                 case 2:
                     SetPlayerJob(MsgDefine.JOB_2, 8, 7, 80, 70);
+                    DIsplaySelect();
                     break;
                 case 3:
                     SetPlayerJob(MsgDefine.JOB_3, 12, 8, 150, 25);
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(3));
+                    DIsplaySelect();
                     break;
                 case 4:
                     SetPlayerJob(MsgDefine.JOB_4, 6, 6, 70, 100);
+                    DIsplaySelect();
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(5));
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(11));
                     break;
                 case 5:
                     SetPlayerJob(MsgDefine.JOB_5, 20, 15, 150, 150);
-                    //Managers.Player.AddSkill();
+                    DIsplaySelect();
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(3));
+                    Managers.Player.AddSkill(Managers.GameData.GetSkill(6));
                     break;
             }
 
-            Console.Write($"\n당신은 이제부터 ");
-            Managers.FontColorChanger.Write(ConsoleColor.Cyan, Managers.Player.Job);
-            Console.WriteLine($" 입니다.\n\n공격력 : {Managers.Player.Atk}\n방어력 : {Managers.Player.Def}\n" +
-                                            $"체  력 : {Managers.Player.Hp}\n마  력 : {Managers.Player.Mp}\n" );
-            Thread.Sleep(3000);
+
+            
 
         }
 
@@ -95,13 +101,25 @@ namespace WeGoMars
             Console.Write("|    ");
             Managers.FontColorChanger.WriteLine(consoleColor, job);
             Console.SetCursorPosition(x, y + 1);
-            Console.WriteLine($"| 공격력 : {atk}");
+            Console.WriteLine($"| {MsgDefine.OFFENSIVE_POWER} : {atk}");
             Console.SetCursorPosition(x, y + 2);
-            Console.WriteLine($"| 방어력 : {def}");
+            Console.WriteLine($"| {MsgDefine.DEFENSIVE_POWER} : {def}");
             Console.SetCursorPosition(x, y + 3);
-            Console.WriteLine($"| 체  력 : {hp}");
+            Console.WriteLine($"| {MsgDefine.HP}   : {hp}");
             Console.SetCursorPosition(x, y + 4);
-            Console.WriteLine($"| 마  력 : {mp}");
+            Console.WriteLine($"| {MsgDefine.MP}   : {mp}");
+        }
+
+        public void DIsplaySelect()
+        {
+            Console.Write($"\n당신은 이제부터 ");
+            Managers.FontColorChanger.Write(ConsoleColor.Green, Managers.Player.Name);
+            Console.Write(" ( ");
+            Managers.FontColorChanger.Write(ConsoleColor.Cyan, Managers.Player.Job);
+            Console.Write(" ) ");
+            Console.WriteLine($" 입니다.\n\n{MsgDefine.OFFENSIVE_POWER} : {Managers.Player.Atk}\n{MsgDefine.DEFENSIVE_POWER} : {Managers.Player.Def}\n" +
+                                            $"{MsgDefine.HP}   : {Managers.Player.Hp}\n{MsgDefine.MP}   : {Managers.Player.Mp}\n");
+            Thread.Sleep(3000);
         }
 
         public void SetPlayerJob(string job, int atk, int def, int hp, int mp)

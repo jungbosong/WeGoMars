@@ -27,8 +27,6 @@ namespace WeGoMars
 
         public override void TakeDamage(float damage)
         {
-            int d = Convert.ToInt32(Math.Round(damage));
-
             if (damage > 0)
             {
                 Hp -= d;
@@ -38,6 +36,5 @@ namespace WeGoMars
                 }
             }
         }
-
     }
 }

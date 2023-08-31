@@ -12,6 +12,7 @@
         private static StoreScene s_storeScene = new StoreScene();
         private static RecoveryScene s_recoveryScene = new RecoveryScene();
         private static SelectCharacterScene s_selectCharacterScene = new SelectCharacterScene();
+        private static SaveCharacterScene s_saveCharacterScene = new SaveCharacterScene();
         private static FontColorChanger s_fontColorChanger = new FontColorChanger();
         private static GameData s_gameData = new GameData();
 
@@ -22,6 +23,7 @@
         public static StoreScene StoreScene { get { return s_storeScene; } }    
         public static RecoveryScene RecoveryScene { get { return s_recoveryScene; } }
         public static SelectCharacterScene SelectCharacterScene { get { return s_selectCharacterScene; } }
+        public static SaveCharacterScene SaveCharacterScene { get { return s_saveCharacterScene; } }
         public static FontColorChanger FontColorChanger { get { return s_fontColorChanger; } }
         public static GameData GameData { get { return s_gameData; } }
         public static Player Player = GameData.GetPlayer(0);
