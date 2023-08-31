@@ -8,12 +8,15 @@ namespace WeGoMars
         public const string OUT = "나가기\n";
         public const string EQUIP = "[E]";
         public const string LEVEL = "Lv. ";
+        public const string NICKNAME = "닉네임: ";
         public const string JOB = "Chad ";
         public const string OFFENSIVE_POWER = "공격력";
         public const string DEFENSIVE_POWER = "방어력";
         public const string HP = "체력";
         public const string MP = "마나";
         public const string GOLD = "G";
+        public const string GOLD_IN_HAND = "보유 재화";
+        public const string LIST_SKILL = "[스킬 목록]\n";
         public const string MAIN = "게임 시작 화면\n";
         public const string OPENING_PHARASE = "스파르타 마을에 오신 여러분 환영합니다.\n이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.\n\n";
         public const string SHOW_STATE = "상태 보기\n";

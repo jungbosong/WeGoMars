@@ -22,7 +22,7 @@ namespace WeGoMars
 
         public override float Attack()
         {
-
+            return Atk;
         }
 
         public override void TakeDamage(float damage)
