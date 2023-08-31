@@ -57,7 +57,7 @@ namespace WeGoMars
                 Console.Write($"- {itemInfo[0]}");
                 Console.SetCursorPosition(x + 20, y);
                 Console.Write($"| {itemInfo[1]}");
-                Console.SetCursorPosition(x + 35, y);
+                Console.SetCursorPosition(x + 40, y);
                 Console.Write($"| {itemInfo[2]}");
                 y++;
             }
@@ -75,7 +75,7 @@ namespace WeGoMars
                 Console.Write($"{i}. {itemInfo[0]}");
                 Console.SetCursorPosition(x + 25, y);
                 Console.Write($"| {itemInfo[1]}");
-                Console.SetCursorPosition(x + 40, y);
+                Console.SetCursorPosition(x + 45, y);
                 Console.Write($"| {itemInfo[2]}");
                 y++;
             }
