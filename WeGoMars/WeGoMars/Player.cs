@@ -37,7 +37,9 @@ namespace WeGoMars
         {
 
             Random random = new Random();
-            float per =random.Next(90,111)/100f; //10%
+
+            float per = random.Next(90,111)/100f; //10%
+
             float damage = ( GetTotalAtk() *per);
 
             return damage;

@@ -46,22 +46,78 @@ namespace WeGoMars
             }
         }
 
-        public void WriteItemList(List<string> items)
+        public void WriteItemList(int x, int y, List<string> items)
         {
+            Console.SetCursorPosition(x, y++);
             Console.Write(items[0]);
             for (int i = 1; i < items.Count; i++)
-            {
-                Console.Write($"- {items[i]}");
+            { 
+                string[] itemInfo = items[i].Split("|");
+                Console.SetCursorPosition(x, y);
+                Console.Write($"- {itemInfo[0]}");
+                Console.SetCursorPosition(x + 20, y);
+                Console.Write($"| {itemInfo[1]}");
+                Console.SetCursorPosition(x + 35, y);
+                Console.Write($"| {itemInfo[2]}");
+                y++;
             }
             Console.WriteLine();
         }
 
-        public void WriteOptionalItemsList(List<string> items, ConsoleColor color)
+        public void WriteOptionalItemsList(int x, int y, List<string> items, ConsoleColor backgroundColor)
         {
-            Console.BackgroundColor = color;
+            Console.BackgroundColor = backgroundColor;
+            Console.ForegroundColor = ConsoleColor.Black;
             for (int i = 1; i < items.Count; i++)
             {
-                Console.Write($"-{i}. {items[i]}");
+                string[] itemInfo = items[i].Split("|");
+                Console.SetCursorPosition(x, y);
+                Console.Write($"{i}. {itemInfo[0]}");
+                Console.SetCursorPosition(x + 25, y);
+                Console.Write($"| {itemInfo[1]}");
+                Console.SetCursorPosition(x + 40, y);
+                Console.Write($"| {itemInfo[2]}");
+                y++;
+            }
+            Console.ResetColor();
+        }
+
+        public void WriteStoreItemList(int x, int y, List<string> items)
+        {
+            Console.SetCursorPosition(x, y++);
+            Console.Write(items[0]);
+            for (int i = 1; i < items.Count; i++)
+            {
+                string[] itemInfo = items[i].Split("|");
+                Console.SetCursorPosition(x, y);
+                Console.Write($"- {itemInfo[0]}");
+                Console.SetCursorPosition(x + 20, y);
+                Console.Write($"| {itemInfo[1]}");
+                Console.SetCursorPosition(x + 35, y);
+                Console.Write($"| {itemInfo[2]}");
+                Console.SetCursorPosition(x + 95, y);
+                Console.Write($"| {itemInfo[3]}");
+                y++;
+            }
+            Console.WriteLine();
+        }
+
+        public void WriteStoreOptionalItemsList(int x, int y, List<string> items, ConsoleColor backgroundColor)
+        {
+            Console.BackgroundColor = backgroundColor;
+            Console.ForegroundColor = ConsoleColor.Black;
+            for (int i = 1; i < items.Count; i++)
+            {
+                string[] itemInfo = items[i].Split("|");
+                Console.SetCursorPosition(x, y);
+                Console.Write($"{i}. {itemInfo[0]}");
+                Console.SetCursorPosition(x + 25, y);
+                Console.Write($"| {itemInfo[1]}");
+                Console.SetCursorPosition(x + 40, y);
+                Console.Write($"| {itemInfo[2]}");
+                Console.SetCursorPosition(x + 105, y);
+                Console.Write($"| {itemInfo[3]}");
+                y++;
             }
             Console.ResetColor();
         }

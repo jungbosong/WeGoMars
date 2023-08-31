@@ -21,7 +21,7 @@ namespace WeGoMars
             Console.WriteLine($"{Managers.Player.Gold} {MsgDefine.GOLD}\n");
 
             SetStoreItemList();
-            WriteItemList(storeItemList);
+            WriteStoreItemList(0, 6, storeItemList);
 
             SetAction($"1. {MsgDefine.PURCHASE_ITEM}2. {MsgDefine.SELL_ITEM}0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, 2);
@@ -49,7 +49,7 @@ namespace WeGoMars
             Console.WriteLine($"{Managers.Player.Gold} {MsgDefine.GOLD}\n");
 
             SetStoreItemList();
-            WriteOptionalItemsList(storeItemList, ConsoleColor.Green);
+            WriteStoreOptionalItemsList(0, 7, storeItemList, ConsoleColor.Green);
 
             SetAction($"0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, Managers.GameData.GetItemList().Count);
@@ -88,7 +88,7 @@ namespace WeGoMars
             Console.WriteLine($"{Managers.Player.Gold} {MsgDefine.GOLD}\n");
 
             SetSellItemList();
-            WriteOptionalItemsList(sellItemList, ConsoleColor.Green);
+            WriteStoreOptionalItemsList(0, 7, sellItemList, ConsoleColor.Green);
 
             SetAction($"0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, Managers.Player.Inventory.Count);
@@ -113,13 +113,13 @@ namespace WeGoMars
                 string tmp = "";
                 if (item.Type == ItemType.Armor)
                 {
-                    tmp += string.Format("{0,-15}|{1,-10} +{2}|{3,-30}|", item.Name, MsgDefine.DEFENSIVE_POWER, item.Def, item.Info);
+                    tmp += $"{item.Name}|{MsgDefine.DEFENSIVE_POWER} +{item.Def}|{item.Info}";
                 }
                 else
                 {
-                    tmp += string.Format("{0,-15}|{1,-10} +{2}|{3,-30}|", item.Name, MsgDefine.OFFENSIVE_POWER, item.Atk, item.Info);
+                    tmp += $"{item.Name}|{MsgDefine.OFFENSIVE_POWER} +{item.Atk}|{item.Info}";
                 }
-                tmp += string.Format("{0,10} G\n", item.Price);
+                tmp += $"|{item.Price} G\n";
                 storeItemList.Add(tmp);
             }
         }
@@ -134,13 +134,11 @@ namespace WeGoMars
                 string tmp = "";
                 if (item.Type == ItemType.Armor)
                 {
-                    tmp += string.Format("{0,-15}|{1,-10} +{2}|{3,-30}|{4,-10} G\n", 
-                        item.Name, MsgDefine.DEFENSIVE_POWER, item.Def, item.Info, (int)Math.Round(item.Price * 0.85f, 1));
+                    tmp += $"{item.Name}|{MsgDefine.DEFENSIVE_POWER} +{item.Def}|{item.Info}|{(int)Math.Round(item.Price * 0.85f, 1)} G\n";
                 }
                 else
                 {
-                    tmp += string.Format("{0,-15}|{1,-10} +{2}|{3,-30}|{4,-10} G\n", 
-                        item.Name, MsgDefine.OFFENSIVE_POWER, item.Atk, item.Info, (int)Math.Round(item.Price * 0.85f, 1));
+                    tmp += $"{item.Name}|{MsgDefine.OFFENSIVE_POWER} +{item.Atk}|{item.Info}|{(int)Math.Round(item.Price * 0.85f, 1)} G\n";
                 }
 
                 sellItemList.Add(tmp);

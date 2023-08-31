@@ -30,12 +30,12 @@
 
             string action = "";
             int playersCount = Managers.GameData.GetPlayerListCount();
-            List<string> playernames = Managers.GameData.GetPlayerNameList();
+            List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
 
             int i = 0;
             for (i = 1; i < playersCount; i++)
             {
-                action += $"{i}. 캐릭터 이름 : {playernames[i]}\n";
+                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
             }
             action += $"{i}. {MsgDefine.SAVE_NEW}\n";
             action += $"0. {MsgDefine.OUT}";
@@ -67,12 +67,12 @@
 
             string action = "";
             int playersCount = Managers.GameData.GetPlayerListCount();
-            List<string> playernames = Managers.GameData.GetPlayerNameList();
+            List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
 
             int i = 0;
             for (i = 1; i < playersCount; i++)
             {
-                action += $"{i}. 캐릭터 이름 : {playernames[i]}\n";
+                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
             }
             action += $"0. {MsgDefine.OUT}";
             SetAction(action);
