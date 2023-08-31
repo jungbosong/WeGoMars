@@ -13,7 +13,7 @@ namespace WeGoMars
             List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
             for ( int i = 1; i < playersCount; i++)
             {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}, 직업 : {playersInfo[i].Item2}, Lv. {playersInfo[i].Item3}\n";
+                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
             }
             action += "0. 새로 만들기";
             SetAction(action);

@@ -35,7 +35,7 @@
             int i = 0;
             for (i = 1; i < playersCount; i++)
             {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}, 직업 : {playersInfo[i].Item2}, Lv. {playersInfo[i].Item3}\n";
+                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
             }
             action += $"{i}. {MsgDefine.SAVE_NEW}\n";
             action += $"0. {MsgDefine.OUT}";
@@ -72,7 +72,7 @@
             int i = 0;
             for (i = 1; i < playersCount; i++)
             {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}, 직업 : {playersInfo[i].Item2}, Lv. {playersInfo[i].Item3}\n";
+                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
             }
             action += $"0. {MsgDefine.OUT}";
             SetAction(action);
