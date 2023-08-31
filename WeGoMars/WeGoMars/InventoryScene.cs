@@ -13,12 +13,7 @@ namespace WeGoMars
             Console.WriteLine();
 
             SetItemList();
-            Console.Write(itemList[0]);
-            for (int i = 1; i < itemList.Count; i++)
-            {
-                Console.Write($"- {itemList[i]}");
-            }
-            Console.WriteLine();
+            WriteItemList(itemList);
 
             SetAction($"1. {MsgDefine.MANAGE_EQUIP}2. {MsgDefine.SORT_ITEM}0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, 2);
@@ -42,14 +37,7 @@ namespace WeGoMars
             Console.Write(MsgDefine.EXPLAN_EQUIP);
 
             SetItemList();
-            Console.BackgroundColor = ConsoleColor.Green;
-            Console.Write(itemList[0]);
-            for (int i = 1; i < itemList.Count; i++)
-            {
-                Console.Write($"- {i} {itemList[i]}");
-            }
-            Console.WriteLine();
-            Console.ResetColor();
+            WriteOptionalItemsList(itemList, ConsoleColor.Green);
 
             SetAction($"0. {MsgDefine.OUT}");
             int input = CheckValidInput(0, Managers.Player.Inventory.Count);

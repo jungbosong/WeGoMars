@@ -12,6 +12,7 @@ namespace WeGoMars
         public const string OFFENSIVE_POWER = "공격력";
         public const string DEFENSIVE_POWER = "방어력";
         public const string HP = "체력";
+        public const string MP = "마나";
         public const string GOLD = "G";
         public const string MAIN = "게임 시작 화면\n";
         public const string OPENING_PHARASE = "스파르타 마을에 오신 여러분 환영합니다.\n이곳에서 던전으로 들어가기 전 활동을 할 수 있습니다.\n\n";
@@ -35,5 +36,22 @@ namespace WeGoMars
         public const string LACK_GOLD = "Gold가 부족합니다.\n";
         public const string SUCCESS = "구매를 완료했습니다.\n";
         public const string START_BATTLE = "전투 시작\n";
+        public const string RECOVERY = "회복";
+        public const string RECOVERY_HEALTHPOTION = "체력 포션을 사용하면 체력을 회복 할 수 있습니다.";
+        public const string RECOVERY_MANAPOTION = "마나 포션을 사용하면 마나를 회복 할 수 있습니다.";
+        public const string RECOVERY_FULLRECOVERY = "를 내면 전부 회복할 수 있습니다.";
+        public const string USE_HEALTHPOTION = "체력 포션 사용하기";
+        public const string USE_MANAPOTION = "마나 포션 사용하기";
+        public const string USE_FULLRECOVERY = "전부 회복하기";
+        public const string CHARACTER_SELECT = "캐릭터 고르기";
+        public const string CHARACTER_SETUP = "캐릭터 설정";
+        public const string SELECT_WELCOME = "축하합니다. 화성에 드디어 도착하셨군요.";
+        public const string INPUT_CHARACTERNAME = "원하시는 이름을 설정해주세요\n>>";
+        public const string INPUT_CHARACTERJOB = "원하시는 직업을 설정해주세요.\n>>";
+        public const string JOB_1 = "전사";
+        public const string JOB_2 = "용병";
+        public const string JOB_3 = "병사";
+        public const string JOB_4 = "떠돌이";
+        public const string JOB_5 = "기사";
     }
 }

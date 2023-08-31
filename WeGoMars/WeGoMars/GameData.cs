@@ -1,6 +1,8 @@
 
 using Newtonsoft.Json;
-using System.Numerics;
+using System.Diagnostics;
+using System;
+using System.Xml.Linq;
 
 namespace WeGoMars
 {
@@ -10,8 +12,8 @@ namespace WeGoMars
         private List<Skill> skillList;
         private List<Player> players;
         private List<Monster> monsters;
-        private string filePath = $"{Directory.GetCurrentDirectory()}\\";
-
+        //private string filePath = $"{Directory.GetCurrentDirectory()}\\";
+        private string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
 
         public GameData()
         {
@@ -23,11 +25,11 @@ namespace WeGoMars
             else
             {
                 itemList = new List<Item>() { 
-                    new Item("0", "Å×½ºÆ® ¾ÆÀÌÅÛ", ItemType.Weapon, "Å×½ºÆ®¿ë °Ë ÀÔ´Ï´Ù.", 100f, 100, 100, 100, 100000),
-                    new Item("1", "³°Àº °Ë", ItemType.Weapon, "½±°Ô º¼ ¼ö ÀÖ´Â ³°Àº °ËÀÔ´Ï´Ù.", 2f, 0, 0, 0, 1000),
-                    new Item("2", "¼ö·ÃÀÚ °©¿Ê", ItemType.Armor, "¼ö·Ã¿¡ µµ¿òÀ» ÁÖ´Â °©¿ÊÀÔ´Ï´Ù.", 0f, 5, 0, 0, 2500),
-                    new Item("3", "Ã»µ¿ µµ³¢", ItemType.Weapon, "¾îµð¼±°¡ »ç¿ë‰ç´ø°Å °°Àº µµ³¢ÀÔ´Ï´Ù.", 5f, 0, 0, 0, 2500),
-                    new Item("4", "¹«¼è°©¿Ê", ItemType.Armor, "¹«¼è·Î ¸¸µé¾îÁ® Æ°Æ°ÇÑ °©¿ÊÀÔ´Ï´Ù.", 0f, 9, 0, 0, 4500)
+                    new Item("0", "ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", ItemType.Weapon, "ï¿½×½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.", 100f, 100, 100, 100, 100000),
+                    new Item("1", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½", ItemType.Weapon, "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", 2f, 0, 0, 0, 1000),
+                    new Item("2", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", ItemType.Armor, "ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", 0f, 5, 0, 0, 2500),
+                    new Item("3", "Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", ItemType.Weapon, "ï¿½ï¿½ð¼±°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", 5f, 0, 0, 0, 2500),
+                    new Item("4", "ï¿½ï¿½ï¿½è°©ï¿½ï¿½", ItemType.Armor, "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ°Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½.", 0f, 9, 0, 0, 4500)
                 };
             }
 
@@ -39,11 +41,11 @@ namespace WeGoMars
             else
             {
                 skillList = new List<Skill>() { 
-                    new Skill("¾ËÆÄ ½ºÆ®¶óÀÌÅ©", 2f, 1, 10), 
-                    new Skill("´õºí ½ºÆ®¶óÀÌÅ©", 1.5f, 2, 15),
-                    new Skill("¿­ÆÄÂü", 3f, 5, 25),
-                    new Skill("ÀÓ½Ã ¸ó½ºÅÍ ½ºÅ³ 1", 2f, 1, 5), 
-                    new Skill("ÀÓ½Ã ¸ó½ºÅÍ ½ºÅ³ 2", 1.5f, 2, 10)
+                    new Skill("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Å©", 2f, 1, 10), 
+                    new Skill("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Å©", 1.5f, 2, 15),
+                    new Skill("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 3f, 5, 25),
+                    new Skill("ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ 1", 2f, 1, 5), 
+                    new Skill("ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ 2", 1.5f, 2, 10)
                 };
             }
 
@@ -54,17 +56,16 @@ namespace WeGoMars
             }
             else
             {
-                players = new List<Player>() { 
-                    new Player("ÇÃ·¹ÀÌ¾î", "Àü»ç", 1, 10, 5, 100, 50, 100, 50, 1500, 0,
+                players = new List<Player>() {
+                    new Player("ï¿½Ã·ï¿½ï¿½Ì¾ï¿½", "ï¿½ï¿½ï¿½ï¿½", 1, 10, 5, 100, 50, 100, 50, 1500, 0,
                     new List<Skill>(){
-                        new Skill("¾ËÆÄ ½ºÆ®¶óÀÌÅ©", 2f, 1, 10),
-                        new Skill("´õºí ½ºÆ®¶óÀÌÅ©", 1.5f, 2, 15),
-                        new Skill("¿­ÆÄÂü", 3f, 5, 25)},
-                    new List<Item>(){ 
-                        new Item("1", "³°Àº °Ë", ItemType.Weapon, "½±°Ô º¼ ¼ö ÀÖ´Â ³°Àº °ËÀÔ´Ï´Ù.", 2f, 0, 0, 0, 1000, true),
-                        new Item("2", "¼ö·ÃÀÚ °©¿Ê", ItemType.Armor, "¼ö·Ã¿¡ µµ¿òÀ» ÁÖ´Â °©¿ÊÀÔ´Ï´Ù.", 0f, 5, 0, 0, 2500) },
-                    new List<Item>(){ 
-                        new Item("1", "³°Àº °Ë", ItemType.Weapon, "½±°Ô º¼ ¼ö ÀÖ´Â ³°Àº °ËÀÔ´Ï´Ù.", 2f, 0, 0, 0, 1000, true)}, 3, 3)};
+                        new Skill("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Å©", 2f, 1, 10),
+                        new Skill("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½Å©", 1.5f, 2, 15),
+                        new Skill("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 3f, 5, 25)},
+                    new List<Item>(){
+                        itemList[1], 
+                        itemList[2]},
+                    3, 3) };
             }
 
             if (File.Exists(filePath + "MonsterData.Json"))
@@ -75,16 +76,16 @@ namespace WeGoMars
             else
             {
                 monsters = new List<Monster>() { 
-                    new Monster(name: "¹Ì´Ï¾ð", job: "monster", level: 2, atk: 5, def: 0, maxHp: 15, maxMp: 0, hp: 15, mp: 0, gold: 400, exp: 2,
-                        new List<Skill>(){ skillList[3] },
+                    new Monster(name: "ï¿½Ì´Ï¾ï¿½", job: "monster", level: 2, atk: 5, def: 0, maxHp: 15, maxMp: 0, hp: 15, mp: 0, gold: 400, exp: 2,
+                        new List<Skill>(){ new Skill("ï¿½ï¿½ï¿½ï¿½", 1.5f, 1, 5) },
                         new List<Item>() { this.GetItemFromCode("3") }
                         ),
-                    new Monster(name: "°øÇãÃæ", job: "monster", level: 3, atk: 9, def: 0, maxHp: 10, maxMp: 0, hp: 10, mp: 0, gold: 600, exp: 3,
-                        new List<Skill>(){ skillList[4]},
+                    new Monster(name: "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", job: "monster", level: 3, atk: 9, def: 0, maxHp: 10, maxMp: 0, hp: 10, mp: 0, gold: 600, exp: 3,
+                        new List<Skill>(){ new Skill("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1.2f, 2, 7)},
                         new List<Item>() { this.GetItemFromCode("4") }
                         ),
-                    new Monster(name: "´ëÆ÷¹Ì´Ï¾ð", job: "monster", level: 5, atk: 8, def: 0, maxHp: 25, maxMp: 0, hp: 25, mp: 0, gold: 1000, exp: 5,
-                        new List<Skill>(){ skillList[3], skillList[4]},
+                    new Monster(name: "ï¿½ï¿½ï¿½ï¿½ï¿½Ì´Ï¾ï¿½", job: "monster", level: 5, atk: 8, def: 0, maxHp: 25, maxMp: 0, hp: 25, mp: 0, gold: 1000, exp: 5,
+                        new List<Skill>(){ new Skill("ï¿½ï¿½ï¿½ï¿½", 1.5f, 1, 5), new Skill("ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", 1.2f, 2, 7)},
                         new List<Item>() { this.GetItemFromCode("3"), this.GetItemFromCode("4") }
                         ),
                 };
@@ -99,6 +100,19 @@ namespace WeGoMars
                     return DeepClone(item);
             }
             return null;
+        }
+
+        public Skill GetSkill(int num)
+        {
+            if (num >= 0 && num < skillList.Count)
+                return skillList[num];
+            else
+                return skillList[0];
+        }
+        
+        public List<Item> GetItemList()
+        {
+            return itemList;
         }
 
         public Player GetPlayer(string name)
@@ -125,6 +139,21 @@ namespace WeGoMars
                 return DeepClone(monsters[num]);
             else
                 return null;
+        }
+
+        public int GetPlayerListCount()
+        {
+            return players.Count;
+        }
+
+        public List<string> GetPlayerNameList()
+        {
+            List<string> strings = new List<string>();
+            foreach (Player player in players)
+            {
+                strings.Add(player.Name);
+            }
+            return strings;
         }
 
         public void RemovePlayer(int num)
