@@ -7,21 +7,14 @@ namespace WeGoMars
         {
             SetTitle(MsgDefine.CHARACTER_SELECT);
             Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
-
-            string action = "";
-            int playersCount = Managers.GameData.GetPlayerListCount();
             List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
-            for ( int i = 1; i < playersCount; i++)
-            {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
-            }
-            action += "0. 새로 만들기";
-            SetAction(action);
-            int input = CheckValidInput(0, playersCount - 1);
+            DisplayPlayerListWithButton(playersInfo, "[0] 새로 만들기", "");
+
+            int input = CheckValidInput(0, playersInfo.Count - 1);
 
             if (input == 0)
             {
-                Managers.SelectCharacterScene.DisplaySetupCharacter();
+                Managers.SelectCharacterScene.DisplaySetupCharacterName();
             }
             else
             {
@@ -29,20 +22,41 @@ namespace WeGoMars
             }
         }
 
-        public void DisplaySetupCharacter()
+        public void DisplaySetupCharacterName()
         {
             SetTitle(MsgDefine.CHARACTER_SETUP);
             Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
             Console.Write(MsgDefine.INPUT_CHARACTERNAME);
-            string name = Console.ReadLine();
-            Console.Write($"\n당신의 이름은 ");
-            Managers.FontColorChanger.Write(ConsoleColor.Cyan, name);
-            Console.WriteLine(" 입니다.\n");
-            if (name != null )
-                Managers.Player.Name = name;
-                        
+            bool isNameSet = false;
+            while (!isNameSet)
+            {
+                string name = Console.ReadLine();
+                if (name != null && name.Length < 31)
+                {
+                    isNameSet = true;
+                    Console.Write($"\n당신의 이름은 ");
+                    Managers.FontColorChanger.Write(ConsoleColor.Cyan, name);
+                    Console.WriteLine(" 입니다.\n");
+                    Managers.Player.Name = name;
+                    DisplaySetupCharacterJob();
+                }
+                else
+                {
+                    Managers.FontColorChanger.BackgroundWriteLine(ConsoleColor.Red, "이름의 길이는 최대 30글자 입니다.");
+                    Console.Write(">>");
+                }
+            }
+        }
+
+        public void DisplaySetupCharacterJob()
+        {
+            SetTitle(MsgDefine.CHARACTER_SETUP);
+            Console.WriteLine();
+            Managers.FontColorChanger.Write(ConsoleColor.Cyan, $"{Managers.Player.Name}");
+            Console.WriteLine($"{MsgDefine.WELCOME_NAME}\n");
+
             int x = 0;
-            int y = 9;
+            int y = 4;
             int space = 15;
             DisplayJob(x, y, ConsoleColor.Gray, MsgDefine.JOB_1, 10, 5, 100, 50);
             DisplayJob(x + space, y, ConsoleColor.Magenta, MsgDefine.JOB_2, 8, 7, 80, 70);
@@ -53,7 +67,7 @@ namespace WeGoMars
 
             SetAction($"1. {MsgDefine.JOB_1}\n2. {MsgDefine.JOB_2}\n3. {MsgDefine.JOB_3}\n4. {MsgDefine.JOB_4}\n5. {MsgDefine.JOB_5}\n0. {MsgDefine.OUT}");
 
-            Console.SetCursorPosition(0, 23);
+            Console.SetCursorPosition(0, y + 14);
             Console.Write(MsgDefine.INPUT_CHARACTERJOB);
 
             int input = CheckValidInput(0, 5);
@@ -89,13 +103,9 @@ namespace WeGoMars
                     Managers.Player.AddSkill(Managers.GameData.GetSkill(6));
                     break;
             }
-
-
-            
-
         }
 
-        public void DisplayJob(int x, int y, ConsoleColor consoleColor ,string job, int atk, int def, int hp, int mp)
+        public void DisplayJob(int x, int y, ConsoleColor consoleColor, string job, int atk, int def, int hp, int mp)
         {
             Console.SetCursorPosition(x, y);
             Console.Write("|    ");
@@ -119,7 +129,7 @@ namespace WeGoMars
             Console.Write(" ) ");
             Console.WriteLine($" 입니다.\n\n{MsgDefine.OFFENSIVE_POWER} : {Managers.Player.Atk}\n{MsgDefine.DEFENSIVE_POWER} : {Managers.Player.Def}\n" +
                                             $"{MsgDefine.HP}   : {Managers.Player.Hp}\n{MsgDefine.MP}   : {Managers.Player.Mp}\n");
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
         }
 
         public void SetPlayerJob(string job, int atk, int def, int hp, int mp)

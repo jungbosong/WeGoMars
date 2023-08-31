@@ -28,18 +28,9 @@
             SetTitle(MsgDefine.CHARACTER_SAVE);
             Console.WriteLine($"\n{MsgDefine.SAVE_SCENE}\n");
 
-            string action = "";
-            int playersCount = Managers.GameData.GetPlayerListCount();
             List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
-
-            int i = 0;
-            for (i = 1; i < playersCount; i++)
-            {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
-            }
-            action += $"{i}. {MsgDefine.SAVE_NEW}\n";
-            action += $"0. {MsgDefine.OUT}";
-            SetAction(action);
+            int playersCount = playersInfo.Count;
+            DisplayPlayerListWithButton(playersInfo, $"[{playersCount}] {MsgDefine.SAVE_NEW}", $"0. {MsgDefine.OUT}");
 
             int input = CheckValidInput(0, playersCount);
             if (input == 0)
@@ -48,13 +39,13 @@
             }
             else if (input == playersCount)
             {
-                Managers.GameData.AddPlayer(Managers.Player);
+                Managers.GameData.AddPlayer(Managers.GameData.DeepClone(Managers.Player));
                 Managers.GameData.SaveAllData();
                 Managers.SaveCharacterScene.DisplaySave();
             }
             else
             {
-                Managers.GameData.InsertPlayer(input, Managers.Player);
+                Managers.GameData.InsertPlayer(input, Managers.GameData.DeepClone(Managers.Player));
                 Managers.GameData.SaveAllData();
                 Managers.SaveCharacterScene.DisplaySave();
             }
@@ -65,17 +56,9 @@
             SetTitle(MsgDefine.CHARACTER_DELETE);
             Console.WriteLine($"\n{MsgDefine.DELETE_SCENE}\n");
 
-            string action = "";
-            int playersCount = Managers.GameData.GetPlayerListCount();
             List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
-
-            int i = 0;
-            for (i = 1; i < playersCount; i++)
-            {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
-            }
-            action += $"0. {MsgDefine.OUT}";
-            SetAction(action);
+            int playersCount = playersInfo.Count;
+            DisplayPlayerListWithButton(playersInfo, "", $"0. {MsgDefine.OUT}");
 
             int input = CheckValidInput(0, playersCount - 1);
             if (input == 0)

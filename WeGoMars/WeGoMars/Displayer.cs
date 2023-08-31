@@ -121,5 +121,50 @@ namespace WeGoMars
             }
             Console.ResetColor();
         }
+
+        //플레이어 정보와 추가 버튼을 네모박스 UI를 만들어 표현.
+        //Button = "" 일 경우 플레이어 정보만 표현.
+        //setAction = "" 일 경우 플레이어 정보를 포함한 버튼만 표현.
+        public void DisplayPlayerListWithButton(List<(string, string, int)> playersInfo, string Button, string setAction)
+        {
+            string line = " ";
+            line = line.PadRight(60, '-');
+            for (int i = 1; i < playersInfo.Count; i++)
+            {
+                Console.WriteLine(line);
+                Console.Write($"|          |  이름 : ");
+                Managers.FontColorChanger.Write(ConsoleColor.Green, $"{playersInfo[i].Item1}");
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+                Console.Write($"|   ");
+                Managers.FontColorChanger.BothgroundWrite(ConsoleColor.Black, ConsoleColor.Cyan, $"[{i}]");
+                Console.SetCursorPosition(11, Console.GetCursorPosition().Top);
+                Console.Write("|  직업 : ");
+                Managers.FontColorChanger.Write(ConsoleColor.Cyan, $"{playersInfo[i].Item2}");
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+                Console.Write($"|          |  Level: ");
+                Managers.FontColorChanger.Write(ConsoleColor.Magenta, $"{playersInfo[i].Item3}");
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+            }
+            if(Button != null && Button != "")
+            {
+                Console.WriteLine(line);
+                Console.Write("|");
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+                Console.Write("|   ");
+                Managers.FontColorChanger.BothgroundWrite(ConsoleColor.Black, ConsoleColor.Cyan, Button);
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+                Console.Write("|");
+                Console.SetCursorPosition(60, Console.GetCursorPosition().Top);
+                Console.WriteLine("|");
+            }
+            Console.WriteLine(line);
+
+            SetAction(setAction);
+        }
     }
 }
