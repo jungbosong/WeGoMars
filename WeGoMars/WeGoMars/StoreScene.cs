@@ -132,6 +132,10 @@ namespace WeGoMars
             foreach (Item item in Managers.Player.Inventory)
             {
                 string tmp = "";
+                if (item.Equipped)
+                {
+                    tmp += MsgDefine.EQUIP;
+                }
                 if (item.Type == ItemType.Armor)
                 {
                     tmp += $"{item.Name}|{MsgDefine.DEFENSIVE_POWER} +{item.Def}|{item.Info}|{(int)Math.Round(item.Price * 0.85f, 1)} G\n";
