@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using System.Linq;
 using System.Numerics;
 using System.Reflection.Metadata.Ecma335;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
@@ -236,7 +237,8 @@ namespace WeGoMars
             Console.WriteLine("0. 취소");
             Console.WriteLine();
             Console.Write("대상을 선택해주세요. \n>>");
-            while (true)
+            bool isDone = false;
+            while (!isDone)
             {
                 int input = CheckValidInput(0, monster.Count);               
                 {
@@ -257,7 +259,16 @@ namespace WeGoMars
                             break;
                     }
                 }
-                
+                int tmp = 1;
+                foreach (Monster mon in monster)
+                {
+                    if (mon.IsDead())
+                        tmp *= 1;
+                    else
+                        tmp *= 0;
+                }
+                if (tmp == 1)
+                    isDone = true;
             }
             
         }
@@ -280,7 +291,8 @@ namespace WeGoMars
             Console.WriteLine("0. 취소");
             Console.WriteLine();
             Console.WriteLine("사용할 스킬을 입력하세요\n>>");
-            while(true) 
+            bool isDone = false;
+            while(!isDone) 
             {
                 int input = CheckValidInput(0, Managers.Player.SkillList.Count);
                 switch (input)
@@ -300,7 +312,8 @@ namespace WeGoMars
                             Console.WriteLine();
                             Console.Write("대상을 선택해주세요. \n>>");
                             int input1 = 0;
-                            while (true)
+                            bool isSkillDone = false;
+                            while (!isSkillDone)
                             {
                                 input1 = CheckValidInput(0, monster.Count);
                                 if (monster[input1 - 1].IsDead() == false)
@@ -314,6 +327,7 @@ namespace WeGoMars
                                             DisplayPlayerTurn(monster, input - 1, input1 - 1);
                                             break;
                                     }
+                                    isSkillDone = true;
                                 }
                                 else
                                 {
@@ -343,9 +357,17 @@ namespace WeGoMars
                         }
                         break;
                 }
+                int tmp = 1;
+                foreach(Monster mon in monster)
+                {
+                    if (mon.IsDead())
+                        tmp *= 1;
+                    else
+                        tmp *= 0;
+                }
+                if (tmp == 1)
+                    isDone = true;
             }
-            
-            
         }
         public void DisplayPlayerItem(List<Monster> monster)
         {
