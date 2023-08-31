@@ -7,17 +7,10 @@ namespace WeGoMars
         {
             SetTitle(MsgDefine.CHARACTER_SELECT);
             Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
-
-            string action = "";
-            int playersCount = Managers.GameData.GetPlayerListCount();
             List<(string, string, int)> playersInfo = Managers.GameData.GetPlayersSimpleInfoList();
-            for ( int i = 1; i < playersCount; i++)
-            {
-                action += $"{i}. 캐릭터 이름 : {playersInfo[i].Item1}\n\t  직업 : {playersInfo[i].Item2}\n\t  Level:  {playersInfo[i].Item3:D2}\n";
-            }
-            action += "0. 새로 만들기";
-            SetAction(action);
-            int input = CheckValidInput(0, playersCount - 1);
+            DisplayPlayerListWithButton(playersInfo, "[0] 새로 만들기", "");
+
+            int input = CheckValidInput(0, playersInfo.Count - 1);
 
             if (input == 0)
             {
@@ -34,13 +27,25 @@ namespace WeGoMars
             SetTitle(MsgDefine.CHARACTER_SETUP);
             Console.WriteLine($"\n{MsgDefine.WELCOME_MSG}\n");
             Console.Write(MsgDefine.INPUT_CHARACTERNAME);
-            string name = Console.ReadLine();
-            Console.Write($"\n당신의 이름은 ");
-            Managers.FontColorChanger.Write(ConsoleColor.Cyan, name);
-            Console.WriteLine(" 입니다.\n");
-            if (name != null )
-                Managers.Player.Name = name;
-                        
+            bool isNameSet = false;
+            while (!isNameSet)
+            {
+                string name = Console.ReadLine();
+                if (name != null && name.Length < 31)
+                {
+                    isNameSet = true;
+                    Console.Write($"\n당신의 이름은 ");
+                    Managers.FontColorChanger.Write(ConsoleColor.Cyan, name);
+                    Console.WriteLine(" 입니다.\n");
+                    Managers.Player.Name = name;
+                }
+                else
+                {
+                    Managers.FontColorChanger.BackgroundWriteLine(ConsoleColor.Red, "이름의 길이는 최대 30글자 입니다.");
+                    Console.Write(">>");
+                }
+            }
+
             int x = 0;
             int y = 9;
             int space = 15;
@@ -89,13 +94,9 @@ namespace WeGoMars
                     Managers.Player.AddSkill(Managers.GameData.GetSkill(6));
                     break;
             }
-
-
-            
-
         }
 
-        public void DisplayJob(int x, int y, ConsoleColor consoleColor ,string job, int atk, int def, int hp, int mp)
+        public void DisplayJob(int x, int y, ConsoleColor consoleColor, string job, int atk, int def, int hp, int mp)
         {
             Console.SetCursorPosition(x, y);
             Console.Write("|    ");
