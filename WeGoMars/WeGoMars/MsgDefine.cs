@@ -53,5 +53,8 @@ namespace WeGoMars
         public const string JOB_3 = "병사";
         public const string JOB_4 = "떠돌이";
         public const string JOB_5 = "기사";
+        public const int FULLRECOVERY_COST = 1000;
+        public const int HP_POTION_AMOUNT = 30;
+        public const int MP_POTION_AMOUNT = 25;
     }
 }
