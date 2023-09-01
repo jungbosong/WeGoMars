@@ -89,25 +89,7 @@
 
 ## 2️⃣ 담당자
 
-| 팀원명 | 담당 기능 |
-| --- | --- |
-| 윤지연 (팀장) | UI
-  게임 시작 화면
-  상태보기 화면 
-  인벤토리 화면
-  상점 화면 |
-| 박민호 | UI
-  스테이지 선택 화면
-  던전 화면
-전투 진행
-  스킬 사용
-  턴제 진행
-  회복 아이템 사용 |
-| 박종수 | [ Battle] with 민호,성림
-  스킬 기능
-  치명타 기능
-  회피 기능 |
-| ⭐️장성림⭐️ | 나머지 . 세스코! |
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled.png)
 
 ---
 
@@ -119,27 +101,27 @@
 
 저장한 캐릭터를 고르거나 새로 만들 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%201.png)
 
 **🔽 캐릭터 생성 화면**
 
 캐릭터 이름을 입력할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%201.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%202.png)
 
 캐릭터 직업을 고를 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%202.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%203.png)
 
 직업을 고르면 이름과 선택한 직업을 보여준다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%203.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%204.png)
 
 ## 1️⃣ 게임 시작 화면
 
 **🔽 게임 시작 화면**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%204.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%205.png)
 
 ## 2️⃣ 상태보기
 
@@ -149,7 +131,7 @@
 
 기본 공격력, 방어력에서 장착한 아이템의 효과를 반영한 수치를 보여준다. 괄호 안에 있는 수치는 아이템 효과이다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%205.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%206.png)
 
 ## 3️⃣ 전투 시작
 
@@ -157,7 +139,7 @@
 
 난이도를 정해 던전에 입장할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%206.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%207.png)
 
 **🔽 전투 화면**
 
@@ -247,7 +229,7 @@
 
 `아이템명 | 효과 | 설명` 이다. `[E]`는 현재 장착 중인 아이템임을 의미하는 표시이다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%207.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%208.png)
 
 **🔽 장착 관리 화면**
 
@@ -257,27 +239,27 @@
 
 현재 무기를 장착하고 있다면 다른 무기는 장착할 수 없다. 방어구도 마찬가지이다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%208.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%209.png)
 
 **🔽 아이템 정렬 전 모습 `중급 던전 클리어 후의 모습`**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%209.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2010.png)
 
 🔽 **아이템 정렬 후 모습 `아이템명 길이가 긴 순서대로 정렬`**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2010.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2011.png)
 
 **🔽 아이템 정렬 후 모습 `장착한 아이템 순서대로 정렬`**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2011.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2012.png)
 
 **🔽 아이템 정렬 후 모습 `공격력이 높은 아이템 순서대로 정렬`**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2012.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2013.png)
 
 **🔽 아이템 정렬 후 모습 `방어력이 높은 아이템 순서대로 정렬`**
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2013.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2014.png)
 
 ## 5️⃣ 상점
 
@@ -285,14 +267,14 @@
 
 상점에서 새로운 아이템을 구매하거나, 보유하고 있는 아이템을 팔 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2014.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2015.png)
 
 **🔽 아이템 구매**
 
 살 수 있는 아이템은 초록색 배경으로 표시된다. 사고 싶은 아이템은 해당 아이템의 번호를 눌러 구매할 수 있다.
 `아이템명 | 효과 | 설명 | 가격` 이다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2015.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2016.png)
 
 **🔽 아이템 판매**
 
@@ -301,7 +283,7 @@
 `아이템명 | 효과 | 설명 | 판매가격` 이다. 
 `[E]` 는 현재 장착 중인 아이템을 의미한다. 장착 중인 아이템을 판매할 경우, 자동으로 장착 해제 된다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2016.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2017.png)
 
 ## 6️⃣회복
 
@@ -309,7 +291,7 @@
 
 보유중인 포션 또는 골드로 회복을 할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2017.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2018.png)
 
 ## 7️⃣캐릭터 저장하기
 
@@ -317,19 +299,19 @@
 
 파일에 캐릭터를 저장하거나 저장했던 캐릭터를 삭제할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2018.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2019.png)
 
 **🔽 캐릭터 저장**
 
 캐릭터를 덮어쓰기 방식으로 저장하거나 새로 저장할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2019.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2020.png)
 
 **🔽 캐릭터 삭제**
 
 저장했던 캐릭터를 삭제할 수 있다.
 
-![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2020.png)
+![Untitled](ReadMe%20e4d14090828c44c4aaccfab2bc08716a/Untitled%2021.png)
 
 ---
 
