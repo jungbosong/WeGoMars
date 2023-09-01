@@ -512,5 +512,150 @@
         "Equipped": false
       }
     ]
+  },
+  {
+    "HealthPotionCnt": 3,
+    "ManaPotionCnt": 3,
+    "Name": "나도 스파르타",
+    "Job": "기사",
+    "Level": 21,
+    "Atk": 30.0,
+    "Def": 35,
+    "MaxHp": -50,
+    "MaxMp": -300,
+    "Hp": 150,
+    "Mp": 100,
+    "Gold": 103000,
+    "Exp": 175,
+    "SkillList": [
+      {
+        "Name": "알파 스트라이크",
+        "AttackBonus": 2.0,
+        "TargetCount": 1,
+        "MpCost": 10
+      },
+      {
+        "Name": "더블 스트라이크",
+        "AttackBonus": 1.5,
+        "TargetCount": 2,
+        "MpCost": 15
+      },
+      {
+        "Name": "열파참",
+        "AttackBonus": 3.0,
+        "TargetCount": 5,
+        "MpCost": 25
+      },
+      {
+        "Name": "돌진",
+        "AttackBonus": 1.5,
+        "TargetCount": 1,
+        "MpCost": 5
+      },
+      {
+        "Name": "대지 강타",
+        "AttackBonus": 1.6,
+        "TargetCount": 3,
+        "MpCost": 15
+      }
+    ],
+    "Inventory": [
+      {
+        "Code": "6",
+        "Name": "스파르타의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 7500,
+        "Equipped": true
+      },
+      {
+        "Code": "7",
+        "Name": "스파르타 왕의 무기",
+        "Type": 0,
+        "Info": "스파르타의 왕이 사용했다는 전설의 창입니다.",
+        "Atk": 20.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 50,
+        "Price": 50000,
+        "Equipped": false
+      },
+      {
+        "Code": "0",
+        "Name": "테스트 아이템",
+        "Type": 0,
+        "Info": "테스트용 검 입니다.",
+        "Atk": 100.0,
+        "Def": 100,
+        "Hp": 100,
+        "Mp": 100,
+        "Price": 100000,
+        "Equipped": false
+      },
+      {
+        "Code": "6",
+        "Name": "스파르타의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 7500,
+        "Equipped": false
+      },
+      {
+        "Code": "7",
+        "Name": "스파르타 왕의 무기",
+        "Type": 0,
+        "Info": "스파르타의 왕이 사용했다는 전설의 창입니다.",
+        "Atk": 20.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 50,
+        "Price": 50000,
+        "Equipped": false
+      },
+      {
+        "Code": "5",
+        "Name": "스파르타의 창",
+        "Type": 0,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 창입니다.",
+        "Atk": 7.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 5000,
+        "Equipped": false
+      },
+      {
+        "Code": "6",
+        "Name": "스파르타의 갑옷",
+        "Type": 1,
+        "Info": "스파르타의 전사들이 사용했다는 특별한 갑옷입니다.",
+        "Atk": 0.0,
+        "Def": 15,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 7500,
+        "Equipped": false
+      },
+      {
+        "Code": "1",
+        "Name": "낡은 검",
+        "Type": 0,
+        "Info": "쉽게 볼 수 있는 낡은 검입니다.",
+        "Atk": 2.0,
+        "Def": 0,
+        "Hp": 0,
+        "Mp": 0,
+        "Price": 1000,
+        "Equipped": true
+      }
+    ]
   }
 ]

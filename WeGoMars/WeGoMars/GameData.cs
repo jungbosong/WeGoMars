@@ -114,7 +114,8 @@ namespace WeGoMars
         
         public List<Item> GetItemList()
         {
-            return itemList;
+            List<Item> returnItemlist = DeepClone(itemList);
+            return returnItemlist;
         }
 
         public Player GetPlayer(string name)
