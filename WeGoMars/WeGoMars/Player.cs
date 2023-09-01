@@ -88,7 +88,7 @@ namespace WeGoMars
 
         public void UseFullRecovery(int money)
         {
-            if (Hp != MaxHp && Mp != MaxMp && Gold >= money)
+            if ((Hp != MaxHp || Mp != MaxMp) && Gold >= money)
             {
                 Gold -= money;
                 Hp = MaxHp;
