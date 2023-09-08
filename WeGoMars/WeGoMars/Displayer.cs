@@ -122,7 +122,6 @@ namespace WeGoMars
             Console.ResetColor();
         }
 
-        //플레이어 정보와 추가 버튼을 네모박스 UI를 만들어 표현.
         //Button = "" 일 경우 플레이어 정보만 표현.
         //setAction = "" 일 경우 플레이어 정보를 포함한 버튼만 표현.
         public void DisplayPlayerListWithButton(List<(string, string, int)> playersInfo, string Button, string setAction)
