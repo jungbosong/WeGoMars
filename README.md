@@ -94,6 +94,7 @@
 ---
 
 # 3. 게임 방법
+시연 영상 보기: https://www.youtube.com/playlist?list=PLliKy4hAuq0791ILzNsaEl4168arMQY19
 
 ## 0️⃣ 캐릭터 선택 및 생성 화면
 

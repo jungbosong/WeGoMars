@@ -12,7 +12,7 @@ namespace WeGoMars
         private List<Skill> skillList;
         private List<Player> players;
         private List<Monster> monsters;
-        private string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\";
+        private string filePath = $"{Directory.GetCurrentDirectory()}\\..\\..\\..\\Data\\";
 
         public GameData()
         {

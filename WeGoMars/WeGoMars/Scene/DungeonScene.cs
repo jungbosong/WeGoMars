@@ -19,7 +19,6 @@ namespace WeGoMars
         private int oldExp;
         private int oldLevel;
         private bool isDone = false;
-        private bool isDoneSkill = false;
 
         Random random = new Random();
         public void DisplayDungeonSelect()
@@ -28,7 +27,6 @@ namespace WeGoMars
             oldLevel = Managers.Player.Level;
             oldExp = Managers.Player.Exp;
             isDone = false;
-            isDoneSkill = false;
             SetTitle("던전 입구");
             Console.WriteLine();
             Console.WriteLine("1. 하급던전");
@@ -51,6 +49,7 @@ namespace WeGoMars
                     break;
             }
         }
+
         public void DisplayDungeon(List<Monster> monster)           // 몬스터정보, 내정보 출력, 행동지정 
         {
             DungeonCommonDisplay(monster);
@@ -60,7 +59,6 @@ namespace WeGoMars
             Console.WriteLine();
             Console.WriteLine(MsgDefine.INPUT_ACTION);
             int input = CheckValidInput(1, 3);
-            isDoneSkill = false;
             switch (input)
             {
                 case 1:
@@ -74,9 +72,9 @@ namespace WeGoMars
                     break;
             }
         }
+
         public List<Monster> SetMonster(int stage)           // 무작위로 몬스터 생성
         {
-
             List<Monster> monster = new List<Monster>();
             int monsterCnt = random.Next(3, 5);
             if (stage == 1)
@@ -183,7 +181,6 @@ namespace WeGoMars
                             Console.WriteLine($"HP {monsterHp[i]} -> {monster[i].Hp}");
                         }
                     }
-
                 }
                 else                                                                    // 다수 공격에서 몬스터 수가 더 많은 경우
                 {
@@ -224,15 +221,10 @@ namespace WeGoMars
                 {
                     Console.WriteLine($"HP {monsterHp[monsterNumber]} -> {monster[monsterNumber].Hp}");
                 }
-                isDoneSkill = true;
             }
             Managers.Player.Mp -= Managers.Player.SkillList[skillNumber].MpCost;
 
-
-
             CheckPlayerWin(monster);
-
-
         }
 
 
@@ -263,11 +255,10 @@ namespace WeGoMars
                             break;
                     }
                 }
-
             }
-
         }
-        public void DisplayPlayerSkill(List<Monster> monsters)        // 스킬을 보여주고 대상을 지정하는 씬
+
+        public void DisplayPlayerSkill(List<Monster> monsters)
         {
             DungeonCommonDisplay(monsters);
             int i = 0;
@@ -407,7 +398,6 @@ namespace WeGoMars
                             Console.WriteLine($"마나가 {MsgDefine.MP_POTION_AMOUNT} 회복되었습니다.");
                             ToMonsterTurn(monster);
                         }
-
                     }
                     else
                     {
@@ -415,10 +405,10 @@ namespace WeGoMars
                         Thread.Sleep(1000);
                         DisplayPlayerItem(monster);
                     }
-
                     break;
             }
         }
+
         public void DisplayMonsterTurn(List<Monster> monster)
         {
             SetTitle("Battle!!");
@@ -435,9 +425,7 @@ namespace WeGoMars
                 }
             }
             CheckMonsterWin(monster);
-
         }
-
 
         public void DisplayResultWin(List<Monster> monster)
         {
@@ -496,8 +484,7 @@ namespace WeGoMars
             ToMainScene();
         }
 
-
-        public void DungeonCommonDisplay(List<Monster> monster)    // 행동지정
+        public void DungeonCommonDisplay(List<Monster> monster)
         {
             SetTitle("Battle!!");
             Console.WriteLine();
@@ -522,8 +509,7 @@ namespace WeGoMars
             Console.WriteLine();
         }
 
-
-        public void DungeonAimingDisplay(List<Monster> monsters)          // 대상지정
+        public void DungeonAimingDisplay(List<Monster> monsters)
         {
             SetTitle("Battle!!");
             Console.WriteLine();
@@ -548,7 +534,6 @@ namespace WeGoMars
             Console.WriteLine();
         }
 
-
         public void ToMonsterTurn(List<Monster> monster)
         {
             Console.WriteLine();
@@ -561,6 +546,7 @@ namespace WeGoMars
                 case 0: DisplayMonsterTurn(monster); break;
             }
         }
+
         public void ToMainScene()
         {
             Console.WriteLine();
@@ -573,6 +559,7 @@ namespace WeGoMars
                 case 0: Managers.MainScene.DisplayMain(); break;
             }
         }
+
         public void ReturnToDisplayDungeon(List<Monster> monster)
         {
             Console.WriteLine();
@@ -607,10 +594,10 @@ namespace WeGoMars
                 {
                     case 0: DisplayResultWin(monster); break;
                 }
-
             }
             else { ToMonsterTurn(monster); }
         }
+
         public void CheckMonsterWin(List<Monster> monster)
         {
             if (Managers.Player.IsDead())
@@ -624,10 +611,8 @@ namespace WeGoMars
                 {
                     case 0: DisplayResultLose(monster); break;
                 }
-
             }
             else { ReturnToDisplayDungeon(monster); }
         }
-
     }
 }
