@@ -47,11 +47,11 @@ namespace WeGoMars
                     Managers.MainScene.DisplayMain();
                     break;
                 case 1:
-                    Managers.Player.UseHealthPotion(healingHealth);
+                    Managers.Player.UseHealthPotion();
                     Managers.RecoveryScene.DisplayRecovery();
                     break;
                 case 2:
-                    Managers.Player.UseManaPotion(healingMana);
+                    Managers.Player.UseManaPotion();
                     Managers.RecoveryScene.DisplayRecovery();
                     break;
                 case 3:

@@ -10,6 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static WeGoMars.Player;
 
 namespace WeGoMars
 {
@@ -19,8 +20,10 @@ namespace WeGoMars
         private int oldExp;
         private int oldLevel;
         private bool isDone = false;
+        private List<Monster> monsters = new List<Monster>();
 
         Random random = new Random();
+
         public void DisplayDungeonSelect()
         {
             oldHp = Managers.Player.Hp;
@@ -36,23 +39,14 @@ namespace WeGoMars
             Console.WriteLine(MsgDefine.INPUT_ACTION);
             int input = CheckValidInput(1, 3);
 
-            switch (input)
-            {
-                case 1:
-                    DisplayDungeon(Managers.DungeonScene.SetMonster(input));
-                    break;
-                case 2:
-                    DisplayDungeon(Managers.DungeonScene.SetMonster(input));
-                    break;
-                case 3:
-                    DisplayDungeon(Managers.DungeonScene.SetMonster(input));
-                    break;
-            }
+            SetMonster(input);
+
+            DisplayDungeon();
         }
 
-        public void DisplayDungeon(List<Monster> monster)           // 몬스터정보, 내정보 출력, 행동지정 
+        public void DisplayDungeon()           // 몬스터정보, 내정보 출력, 행동지정 
         {
-            DungeonCommonDisplay(monster);
+            DungeonCommonDisplay();
             Console.WriteLine("1. 공격");
             Console.WriteLine("2. 스킬");
             Console.WriteLine("3. 아이템 사용");
@@ -62,210 +56,51 @@ namespace WeGoMars
             switch (input)
             {
                 case 1:
-                    DisplayPlayerAttack(monster);
+                    DisplayPlayerAttack();
                     break;
                 case 2:
-                    DisplayPlayerSkill(monster);
+                    DisplayPlayerSkill();
                     break;
                 case 3:
-                    DisplayPlayerItem(monster);
+                    DisplayPlayerItem();
                     break;
             }
         }
 
-        public List<Monster> SetMonster(int stage)           // 무작위로 몬스터 생성
+        public void DisplayPlayerAttack()
         {
-            List<Monster> monster = new List<Monster>();
-            int monsterCnt = random.Next(3, 5);
-            if (stage == 1)
-            {
-                for (int i = 0; i < monsterCnt; i++)
-                {
-                    int monsterIdx = random.Next(0, 4);
-                    monster.Add(Managers.GameData.GetMonster(monsterIdx));
-                }
-            }
-            else if (stage == 2)
-            {
-                for (int i = 0; i < monsterCnt; i++)
-                {
-                    int monsterIdx = random.Next(4, 7);
-                    monster.Add(Managers.GameData.GetMonster(monsterIdx));
-                }
-            }
-            else
-            {
-                for (int i = 0; i < monsterCnt; i++)
-                {
-                    int monsterIdx = random.Next(7, 10);
-                    monster.Add(Managers.GameData.GetMonster(monsterIdx));
-                }
-            }
-
-            return monster;
-        }
-
-        public void DisplayPlayerTurn(List<Monster> monster, int monsterNumber)      // 일반 공격시
-        {
-            SetTitle("Battle!!");
-            Console.WriteLine();
-            Console.WriteLine($"{Managers.Player.Name} 의 공격!");
-            int beforeHp = monster[monsterNumber].Hp;
-            int criticalEvasion = random.Next(0, 100);
-            float dmg = Managers.Player.Attack();
-            if (criticalEvasion < 10)
-            {
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name} 을(를) 공격했지만 아무일도 일어나지 않았습니다.");
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name}");
-            }
-            else if (criticalEvasion < 25)
-            {
-                int criDmg = (int)Math.Round(1.6 * dmg);
-                Console.WriteLine("회심의 일격!!");
-                monster[monsterNumber].TakeDamage(criDmg);
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name} 을(를) 맞췄습니다. [데미지 : {criDmg}]");
-                Console.WriteLine();
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name}");
-            }
-            else
-            {
-                dmg = Managers.Player.Attack();
-                monster[monsterNumber].TakeDamage((int)Math.Round(dmg));
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                Console.WriteLine();
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name}");
-            }
-
-            if (monster[monsterNumber].IsDead())
-            {
-                Console.WriteLine($"HP {beforeHp} -> Dead");
-            }
-            else
-            {
-                Console.WriteLine($"HP {beforeHp} -> {monster[monsterNumber].Hp}");
-            }
-            CheckPlayerWin(monster);
-        }
-
-
-        public void DisplayPlayerTurn(List<Monster> monster, int skillNumber, int monsterNumber)           //스킬 공격시
-        {
-            SetTitle("Battle!!");
-            Console.WriteLine();
-            Console.WriteLine($"{Managers.Player.Name} 의 {Managers.Player.SkillList[skillNumber].Name}!");
-            List<int> aliveMonsterIdx = new List<int>();
-            for (int i = 0; i < monster.Count; i++)
-            {
-                if (monster[i].IsDead() == false)
-                {
-                    aliveMonsterIdx.Add(i);
-                }
-            }
-            int[] monsterHp = new int[monster.Count()];
-            for (int i = 0; i < monster.Count(); i++)
-            {
-                monsterHp[i] = monster[i].Hp;
-            }
-            float dmg = Managers.Player.SkillList[skillNumber].AttackBonus * Managers.Player.Attack();
-            if (monsterNumber == -1)
-            {
-                if (aliveMonsterIdx.Count <= Managers.Player.SkillList[skillNumber].TargetCount)        // 다수 공격인데 몬스터 수가 스킬의 타겟카운트랑 같거나 적은 경우
-                {
-                    for (int i = 0; i < monster.Count; i++)
-                    {
-                        if (monster[i].IsDead() == false)
-                        {
-                            monster[i].TakeDamage((int)Math.Round(dmg));
-                            Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                            Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name}");
-                            Console.WriteLine($"HP {monsterHp[i]} -> {monster[i].Hp}");
-                        }
-                    }
-                }
-                else                                                                    // 다수 공격에서 몬스터 수가 더 많은 경우
-                {
-                    int min = 0;                                                                //타겟카운트만큼 랜덤하게 몬스터를 고르는 과정
-                    int max = aliveMonsterIdx.Count;
-                    int[] allTargets = Enumerable.Range(min, max).ToArray();
-                    int[] realTargets = new int[Managers.Player.SkillList[skillNumber].TargetCount];
-                    for (int i = 0; i < Managers.Player.SkillList[skillNumber].TargetCount; i++)
-                    {
-                        int randomIndex = random.Next(allTargets.Length);
-                        realTargets[i] = allTargets[randomIndex];
-
-                        // 추출된 숫자를 배열에서 제거하여 중복을 방지합니다.
-                        allTargets = allTargets.Where((val, idx) => idx != randomIndex).ToArray();
-                    }
-                    for (int i = 0; i < realTargets.Length; i++)
-                    {
-                        monster[aliveMonsterIdx[realTargets[i]]].TakeDamage((int)Math.Round(dmg));
-                        Console.WriteLine($"Lv.{monster[aliveMonsterIdx[realTargets[i]]].Level} {monster[aliveMonsterIdx[realTargets[i]]].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                        Console.WriteLine($"Lv.{monster[aliveMonsterIdx[realTargets[i]]].Level} {monster[aliveMonsterIdx[realTargets[i]]].Name}");
-                        Console.WriteLine($"HP {monsterHp[aliveMonsterIdx[realTargets[i]]]} -> {monster[aliveMonsterIdx[realTargets[i]]].Hp}");
-                    }
-                }
-
-            }
-
-            else                        // 단일 공격일 경우
-            {
-                monster[monsterNumber].TakeDamage((int)Math.Round(dmg));
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                Console.WriteLine($"Lv.{monster[monsterNumber].Level} {monster[monsterNumber].Name}");
-
-                if (monster[monsterNumber].IsDead())
-                {
-                    Console.WriteLine($"HP {monsterHp[monsterNumber]} -> Dead");
-                }
-                else
-                {
-                    Console.WriteLine($"HP {monsterHp[monsterNumber]} -> {monster[monsterNumber].Hp}");
-                }
-            }
-            Managers.Player.Mp -= Managers.Player.SkillList[skillNumber].MpCost;
-
-            CheckPlayerWin(monster);
-        }
-
-
-        public void DisplayPlayerAttack(List<Monster> monster)
-        {
-            DungeonAimingDisplay(monster);
+            DungeonAimingDisplay();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
             Console.Write("대상을 선택해주세요. \n>>");
             while (isDone == false)
             {
-                int input = CheckValidInput(0, monster.Count);
+                int input = CheckValidInput(0, monsters.Count);
                 {
-                    switch (input)
+                    if (input == 0)
                     {
-                        case 0:
-                            DisplayDungeon(monster);
-                            break;
-                        default:
-                            if (monster[input - 1].IsDead() == false)
-                            {
-                                DisplayPlayerTurn(monster, input - 1);
-                            }
-                            else
-                            {
-                                Console.Write("대상으로 지정할 수 없습니다. \n>>");
-                            }
-                            break;
+
+                        DisplayDungeon();
+                    }
+                    else if (monsters[input - 1].IsDead() == false)
+                    {
+                        DisplayPlayerTurn(input - 1);
+                    }
+                    else
+                    {
+                        Console.Write("대상으로 지정할 수 없습니다. \n>>");
                     }
                 }
             }
         }
 
-        public void DisplayPlayerSkill(List<Monster> monsters)
+        public void DisplayPlayerSkill()
         {
-            DungeonCommonDisplay(monsters);
+            DungeonCommonDisplay();
             int i = 0;
             foreach (Skill skill in Managers.Player.SkillList)
             {
-                Console.WriteLine($"{i + 1}. {skill.Name} - MP {skill.MpCost}");
-                i++;
+                Console.WriteLine($"{++i}. {skill.Name} - MP {skill.MpCost}");
                 if (skill.TargetCount == 1)
                 {
                     Console.WriteLine($"\t공격력 X {skill.AttackBonus}로 하나의 적을 공격합니다.");
@@ -283,7 +118,7 @@ namespace WeGoMars
             int skillInput = CheckValidInput(0, Managers.Player.SkillList.Count);
             if (skillInput == 0)
             {
-                DisplayDungeon(monsters);
+                DisplayDungeon();
             }
             else if (Managers.Player.SkillList[skillInput - 1].MpCost > Managers.Player.Mp)
             {
@@ -291,28 +126,27 @@ namespace WeGoMars
             }
             else if (Managers.Player.SkillList[skillInput - 1].TargetCount == 1)
             {
-                DisplayOneTargetSkill(monsters, skillInput);
+                DisplayOneTargetSkill(skillInput);
             }
             else
             {
-                DisplayRandomTargetSkill(monsters, skillInput);
+                DisplayRandomTargetSkill(skillInput);
             }
         }
 
-        public void DisplayOneTargetSkill(List<Monster> monsters, int skillInput)
+        public void DisplayOneTargetSkill(int skillInput)
         {
-            DungeonAimingDisplay(monsters);
+            DungeonAimingDisplay();
             Console.WriteLine("0. 취소");
             Console.WriteLine();
             Console.Write("대상을 선택해주세요. \n>>");
-            int targetInput = 0;
 
-            targetInput = CheckValidInput(0, monsters.Count);
-            
+            int targetInput = CheckValidInput(0, monsters.Count);
+
             if (targetInput == 0)
             {
 
-                DisplayPlayerSkill(monsters);
+                DisplayPlayerSkill();
             }
             else
             {
@@ -320,13 +154,13 @@ namespace WeGoMars
                 {
                     Console.Write("대상으로 지정할 수 없습니다. \n>>");
                 }
-                DisplayPlayerTurn(monsters, skillInput - 1, targetInput - 1);
+                DisplayPlayerTurn(skillInput - 1, targetInput - 1);
             }
         }
 
-        public void DisplayRandomTargetSkill(List<Monster> monsters, int skillInput)
+        public void DisplayRandomTargetSkill(int skillInput)
         {
-            DungeonCommonDisplay(monsters);
+            DungeonCommonDisplay();
             Console.WriteLine("1. 스킬사용");
             Console.WriteLine();
             Console.WriteLine("0. 취소");
@@ -336,17 +170,17 @@ namespace WeGoMars
             switch (input)
             {
                 case 0:
-                    DisplayPlayerSkill(monsters);
+                    DisplayPlayerSkill();
                     break;
                 case 1:
-                    DisplayPlayerTurn(monsters, skillInput - 1, -1);
+                    DisplayPlayerTurn(skillInput - 1, -1);
                     break;
             }
         }
 
-        public void DisplayPlayerItem(List<Monster> monster)
+        public void DisplayPlayerItem()
         {
-            DungeonCommonDisplay(monster);
+            DungeonCommonDisplay();
             Console.WriteLine("[내 아이템]");
             Console.WriteLine($"체력포션 : {Managers.Player.HealthPotionCnt}");
             Console.WriteLine($"마나포션 : {Managers.Player.ManaPotionCnt}");
@@ -358,88 +192,175 @@ namespace WeGoMars
             switch (input)
             {
                 case 0:
-                    DisplayDungeon(monster);
+                    DisplayDungeon();
                     break;
                 case 1:
-                    if (Managers.Player.HealthPotionCnt > 0)
-                    {
-                        if (Managers.Player.Hp == Managers.Player.MaxHp)
-                        {
-                            Console.WriteLine("이미 체력이 가득 차있습니다.");
-                            Thread.Sleep(1000);
-                            DisplayPlayerItem(monster);
-                        }
-                        else
-                        {
-                            Managers.Player.UseHealthPotion(MsgDefine.HP_POTION_AMOUNT);
-                            Console.WriteLine($"체력이 {MsgDefine.HP_POTION_AMOUNT} 회복되었습니다.");
-                            ToMonsterTurn(monster);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("포션이 없습니다.");
-                        Thread.Sleep(1000);
-                        DisplayPlayerItem(monster);
-                    }
+                    DisplayResultUseItem("체력");
                     break;
                 case 2:
-                    if (Managers.Player.ManaPotionCnt > 0)
-                    {
-                        if (Managers.Player.Mp == Managers.Player.MaxMp)
-                        {
-                            Console.WriteLine("이미 마나가 가득 차있습니다.");
-                            Thread.Sleep(1000);
-                            DisplayPlayerItem(monster);
-                        }
-                        else
-                        {
-                            Managers.Player.UseManaPotion(MsgDefine.MP_POTION_AMOUNT);
-                            Console.WriteLine($"마나가 {MsgDefine.MP_POTION_AMOUNT} 회복되었습니다.");
-                            ToMonsterTurn(monster);
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("포션이 없습니다.");
-                        Thread.Sleep(1000);
-                        DisplayPlayerItem(monster);
-                    }
+                    DisplayResultUseItem("마나");
                     break;
             }
         }
 
-        public void DisplayMonsterTurn(List<Monster> monster)
+        public void DisplayPlayerTurn(int monsterNumber)      // 일반 공격시
+        {
+            SetTitle("Battle!!");
+            Console.WriteLine();
+            Console.WriteLine($"{Managers.Player.Name} 의 공격!");
+            int beforeHp = monsters[monsterNumber].Hp;
+            int criticalEvasion = random.Next(0, 100);
+            float dmg = Managers.Player.Attack();
+            string monsterInfo = $"Lv.{monsters[monsterNumber].Level} {monsters[monsterNumber].Name}";
+            if (criticalEvasion < 10)
+            {
+                Console.WriteLine($"{monsterInfo}을(를) 공격했지만 아무일도 일어나지 않았습니다.");
+                Console.WriteLine($"{monsterInfo}");
+            }
+            else if (criticalEvasion < 25)
+            {
+                int criDmg = (int)Math.Round(1.6 * dmg);
+                Console.WriteLine("회심의 일격!!");
+                monsters[monsterNumber].TakeDamage(criDmg);
+                Console.WriteLine($"{monsterInfo}을(를) 맞췄습니다. [데미지 : {criDmg}]");
+                Console.WriteLine();
+                Console.WriteLine($"{monsterInfo}");
+            }
+            else
+            {
+                dmg = Managers.Player.Attack();
+                monsters[monsterNumber].TakeDamage((int)Math.Round(dmg));
+                Console.WriteLine($"{monsterInfo}을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
+                Console.WriteLine();
+                Console.WriteLine($"{monsterInfo}");
+            }
+
+            if (monsters[monsterNumber].IsDead())
+            {
+                Console.WriteLine($"HP {beforeHp} -> Dead");
+            }
+            else
+            {
+                Console.WriteLine($"HP {beforeHp} -> {monsters[monsterNumber].Hp}");
+            }
+            CheckPlayerWin();
+        }
+
+        public void DisplayPlayerTurn(int skillNumber, int monsterNumber)           //스킬 공격시
+        {
+            SetTitle("Battle!!");
+            Console.WriteLine();
+            Console.WriteLine($"{Managers.Player.Name} 의 {Managers.Player.SkillList[skillNumber].Name}!");
+
+            List<int> aliveMonsters = new List<int>();
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                if (monsters[i].IsDead() == false)
+                {
+                    aliveMonsters.Add(i);
+                }
+            }
+
+            int[] monsterHp = new int[monsters.Count()];
+            for (int i = 0; i < monsters.Count(); i++)
+            {
+                monsterHp[i] = monsters[i].Hp;
+            }
+
+            float dmg = Managers.Player.SkillList[skillNumber].AttackBonus * Managers.Player.Attack();
+            if (monsterNumber == -1)
+            {
+                // 전원 공격
+                if (aliveMonsters.Count <= Managers.Player.SkillList[skillNumber].TargetCount)        // 다수 공격인데 몬스터 수가 스킬의 타겟카운트랑 같거나 적은 경우
+                {
+                    for (int i = 0; i < monsters.Count; i++)
+                    {
+                        if (monsters[i].IsDead() == false)
+                        {
+                            monsters[i].TakeDamage((int)Math.Round(dmg));
+                            Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
+                            Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}");
+                            Console.WriteLine($"HP {monsterHp[i]} -> {monsters[i].Hp}");
+                        }
+                    }
+                }
+                // 랜덤 다수 공격
+                else                                                                    // 다수 공격에서 몬스터 수가 더 많은 경우
+                {
+                    int min = 0;                                                                //타겟카운트만큼 랜덤하게 몬스터를 고르는 과정
+                    int max = aliveMonsters.Count;
+                    int[] allTargets = Enumerable.Range(min, max).ToArray();
+                    int[] realTargets = new int[Managers.Player.SkillList[skillNumber].TargetCount];
+                    for (int i = 0; i < Managers.Player.SkillList[skillNumber].TargetCount; i++)
+                    {
+                        int randomIndex = random.Next(allTargets.Length);
+                        realTargets[i] = allTargets[randomIndex];
+
+                        // 추출된 숫자를 배열에서 제거하여 중복을 방지합니다.
+                        allTargets = allTargets.Where((val, idx) => idx != randomIndex).ToArray();
+                    }
+                    for (int i = 0; i < realTargets.Length; i++)
+                    {
+                        monsters[aliveMonsters[realTargets[i]]].TakeDamage((int)Math.Round(dmg));
+                        Console.WriteLine($"Lv.{monsters[aliveMonsters[realTargets[i]]].Level} {monsters[aliveMonsters[realTargets[i]]].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
+                        Console.WriteLine($"Lv.{monsters[aliveMonsters[realTargets[i]]].Level} {monsters[aliveMonsters[realTargets[i]]].Name}");
+                        Console.WriteLine($"HP {monsterHp[aliveMonsters[realTargets[i]]]} -> {monsters[aliveMonsters[realTargets[i]]].Hp}");
+                    }
+                }
+
+            }
+
+            else                        // 단일 공격일 경우
+            {
+                monsters[monsterNumber].TakeDamage((int)Math.Round(dmg));
+                Console.WriteLine($"Lv.{monsters[monsterNumber].Level} {monsters[monsterNumber].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
+                Console.WriteLine($"Lv.{monsters[monsterNumber].Level} {monsters[monsterNumber].Name}");
+
+                if (monsters[monsterNumber].IsDead())
+                {
+                    Console.WriteLine($"HP {monsterHp[monsterNumber]} -> Dead");
+                }
+                else
+                {
+                    Console.WriteLine($"HP {monsterHp[monsterNumber]} -> {monsters[monsterNumber].Hp}");
+                }
+            }
+            Managers.Player.Mp -= Managers.Player.SkillList[skillNumber].MpCost;
+
+            CheckPlayerWin();
+        }
+
+        public void DisplayMonsterTurn()
         {
             SetTitle("Battle!!");
             Console.WriteLine();
             int beforeHp = Managers.Player.Hp;
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                if (monster[i].IsDead() == false)
+                if (monsters[i].IsDead() == false)
                 {
-                    float dmg = monster[i].Attack();
+                    float dmg = monsters[i].Attack();
                     Managers.Player.TakeDamage((int)Math.Round(dmg));
-                    Console.WriteLine($"Lv.{monster[i].Level} {monster[i].Name} 의 공격!");
+                    Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} 의 공격!");
                     Console.WriteLine($"{Managers.Player.Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
                 }
             }
-            CheckMonsterWin(monster);
+            CheckMonsterWin();
         }
 
-        public void DisplayResultWin(List<Monster> monster)
+        public void DisplayResultWin()
         {
             SetTitle("Battle!! - Result");
             int monsterExp = 0;
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                monsterExp += monster[i].Level;
+                monsterExp += monsters[i].Level;
             }
             Managers.Player.GainExp(monsterExp);
             Console.WriteLine();
             Console.WriteLine("Victory");
             Console.WriteLine();
-            Console.WriteLine($"던전에서 몬스터를 {monster.Count}마리를 잡았습니다.");
+            Console.WriteLine($"던전에서 몬스터를 {monsters.Count}마리를 잡았습니다.");
             Console.WriteLine();
             Console.WriteLine("[캐릭터 정보]");
             Console.WriteLine($"{Managers.Player.Name} ({Managers.Player.Job})");
@@ -456,14 +377,14 @@ namespace WeGoMars
             Console.WriteLine();
             Console.WriteLine("[획득 아이템]");
             int resultGold = 0;
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                resultGold += monster[i].Level * 100;
+                resultGold += monsters[i].Level * 100;
             }
             Console.WriteLine($"{resultGold} Gold");
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                Managers.Player.Inventory.Add(monster[i].DropItem());
+                Managers.Player.Inventory.Add(monsters[i].DropItem());
                 Console.WriteLine(Managers.Player.Inventory[Managers.Player.Inventory.Count - 1].Name);
             }
             Managers.Player.Gold += resultGold;
@@ -471,7 +392,7 @@ namespace WeGoMars
             ToMainScene();
         }
 
-        public void DisplayResultLose(List<Monster> monster)
+        public void DisplayResultLose()
         {
             SetTitle("Battle!! - Result");
             Console.WriteLine();
@@ -484,21 +405,21 @@ namespace WeGoMars
             ToMainScene();
         }
 
-        public void DungeonCommonDisplay(List<Monster> monster)
+        public void DungeonCommonDisplay()
         {
             SetTitle("Battle!!");
             Console.WriteLine();
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                if (monster[i].IsDead())
+                if (monsters[i].IsDead())
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;
-                    Console.WriteLine($"{MsgDefine.LEVEL}{monster[i].Level} {monster[i].Name}  Dead");
+                    Console.WriteLine($"{MsgDefine.LEVEL}{monsters[i].Level} {monsters[i].Name}  Dead");
                     Console.ResetColor();
                 }
                 else
                 {
-                    Console.WriteLine($"{MsgDefine.LEVEL}{monster[i].Level} {monster[i].Name}  HP {monster[i].Hp}");
+                    Console.WriteLine($"{MsgDefine.LEVEL}{monsters[i].Level} {monsters[i].Name}  HP {monsters[i].Hp}");
                 }
             }
             Console.WriteLine();
@@ -509,7 +430,7 @@ namespace WeGoMars
             Console.WriteLine();
         }
 
-        public void DungeonAimingDisplay(List<Monster> monsters)
+        public void DungeonAimingDisplay()
         {
             SetTitle("Battle!!");
             Console.WriteLine();
@@ -534,7 +455,41 @@ namespace WeGoMars
             Console.WriteLine();
         }
 
-        public void ToMonsterTurn(List<Monster> monster)
+        void DisplayResultUseItem(string itemType)
+        {
+            UseItemType result;
+            int amount;
+            if (itemType == "체력")
+            {
+                result = Managers.Player.UseHealthPotion();
+                amount = MsgDefine.HP_POTION_AMOUNT;
+            }
+            else
+            {
+                result = Managers.Player.UseManaPotion();
+                amount = MsgDefine.MP_POTION_AMOUNT;
+            }
+
+            switch (result)
+            {
+                case UseItemType.FullAlready:
+                    Console.WriteLine($"이미 {itemType}이(가) 가득 차있습니다.");
+                    Thread.Sleep(1000);
+                    DisplayPlayerItem();
+                    break;
+                case UseItemType.Success:
+                    Console.WriteLine($"{itemType}이(가) {amount} 회복되었습니다.");
+                    ToMonsterTurn();
+                    break;
+                case UseItemType.LackItem:
+                    Console.WriteLine("포션이 없습니다.");
+                    Thread.Sleep(1000);
+                    DisplayPlayerItem();
+                    break;
+            }
+        }
+
+        public void ToMonsterTurn()
         {
             Console.WriteLine();
             Console.WriteLine("0. 다음");
@@ -543,7 +498,7 @@ namespace WeGoMars
             int input = CheckValidInput(0, 0);
             switch (input)
             {
-                case 0: DisplayMonsterTurn(monster); break;
+                case 0: DisplayMonsterTurn(); break;
             }
         }
 
@@ -560,7 +515,7 @@ namespace WeGoMars
             }
         }
 
-        public void ReturnToDisplayDungeon(List<Monster> monster)
+        public void ReturnToDisplayDungeon()
         {
             Console.WriteLine();
             Console.WriteLine("0. 다음");
@@ -569,21 +524,21 @@ namespace WeGoMars
             int input = CheckValidInput(0, 0);
             switch (input)
             {
-                case 0: DisplayDungeon(monster); break;
+                case 0: DisplayDungeon(); break;
             }
         }
 
-        public void CheckPlayerWin(List<Monster> monster)
+        public void CheckPlayerWin()
         {
             int count = 0;
-            for (int i = 0; i < monster.Count; i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
-                if (monster[i].IsDead())
+                if (monsters[i].IsDead())
                 {
                     count++;
                 }
             }
-            if (count == monster.Count)
+            if (count == monsters.Count)
             {
                 Console.WriteLine();
                 Console.WriteLine("0. 다음");
@@ -592,13 +547,13 @@ namespace WeGoMars
                 int input = CheckValidInput(0, 0);
                 switch (input)
                 {
-                    case 0: DisplayResultWin(monster); break;
+                    case 0: DisplayResultWin(); break;
                 }
             }
-            else { ToMonsterTurn(monster); }
+            else { ToMonsterTurn(); }
         }
 
-        public void CheckMonsterWin(List<Monster> monster)
+        public void CheckMonsterWin()
         {
             if (Managers.Player.IsDead())
             {
@@ -609,10 +564,37 @@ namespace WeGoMars
                 int input = CheckValidInput(0, 0);
                 switch (input)
                 {
-                    case 0: DisplayResultLose(monster); break;
+                    case 0: DisplayResultLose(); break;
                 }
             }
-            else { ReturnToDisplayDungeon(monster); }
+            else { ReturnToDisplayDungeon(); }
+        }
+        public void SetMonster(int stage)           // 무작위로 몬스터 생성
+        {
+            monsters.Clear();
+            int monsterCnt = random.Next(3, 5);
+            int start = 0;
+            int end = 0;
+            switch (stage)
+            {
+                case 1:
+                    start = 0;
+                    end = 4;
+                    break;
+                case 2:
+                    start = 4;
+                    end = 7;
+                    break;
+                case 3:
+                    start = 7;
+                    end = 10;
+                    break;
+            }
+            for (int i = 0; i < monsterCnt; i++)
+            {
+                int monsterIdx = random.Next(start, end);
+                monsters.Add(Managers.GameData.GetMonster(monsterIdx));
+            }
         }
     }
 }

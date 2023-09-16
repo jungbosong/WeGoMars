@@ -1,3 +1,5 @@
+using System.Threading;
+
 namespace WeGoMars
 {
 
@@ -11,6 +13,13 @@ namespace WeGoMars
         {
             Success,
             LackGold,
+        }
+
+        public enum UseItemType
+        {
+            Success,
+            FullAlready,
+            LackItem,
         }
 
         public Player(string name, string job, int level, float atk, int def, int maxHp, int maxMp, int hp, int mp, int gold, int exp,
@@ -58,31 +67,47 @@ namespace WeGoMars
         }
 
 
-        public void UseHealthPotion(int amount)
+        public UseItemType UseHealthPotion()
         {
-            if (Hp <= MaxHp - amount)
+            int amount = MsgDefine.HP_POTION_AMOUNT;
+            if (HealthPotionCnt > 0)
             {
-                Hp += amount;
-                HealthPotionCnt--;
+                if (Hp >= MaxHp)
+                {
+                    return UseItemType.FullAlready;
+                }
+                else
+                {
+                    Hp = (Hp + amount <= MaxHp) ? Hp + amount : MaxHp;
+                    HealthPotionCnt--;
+                    return UseItemType.Success;
+                }
             }
-            else if (Hp > MaxHp - amount && Hp < MaxHp)
+            else
             {
-                Hp = MaxHp;
-                HealthPotionCnt--;
+                return UseItemType.LackItem;
             }
         }
 
-        public void UseManaPotion(int amount)
+        public UseItemType UseManaPotion()
         {
-            if (Mp <= MaxMp - amount)
+            int amount = MsgDefine.MP_POTION_AMOUNT;
+            if (ManaPotionCnt > 0)
             {
-                Mp += amount;
-                ManaPotionCnt--;
+                if (Mp >= MaxMp)
+                {
+                    return UseItemType.FullAlready;
+                }
+                else
+                {
+                    Mp = (Mp + amount <= MaxMp) ? Mp + amount : MaxMp;
+                    ManaPotionCnt--;
+                    return UseItemType.Success;
+                }
             }
-            else if (Mp > MaxHp - amount && Mp < MaxMp)
+            else
             {
-                Mp = MaxMp;
-                ManaPotionCnt--;
+                return UseItemType.LackItem;
             }
         }
 
