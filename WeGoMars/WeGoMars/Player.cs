@@ -66,7 +66,6 @@ namespace WeGoMars
             }
         }
 
-
         public UseItemType UseHealthPotion()
         {
             int amount = MsgDefine.HP_POTION_AMOUNT;

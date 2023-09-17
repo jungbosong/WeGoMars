@@ -123,6 +123,8 @@ namespace WeGoMars
             else if (Managers.Player.SkillList[skillInput - 1].MpCost > Managers.Player.Mp)
             {
                 Console.WriteLine("마나가 부족합니다.");
+                Thread.Sleep(1000);
+                DisplayPlayerSkill();
             }
             else if (Managers.Player.SkillList[skillInput - 1].TargetCount == 1)
             {
@@ -252,12 +254,12 @@ namespace WeGoMars
             Console.WriteLine();
             Console.WriteLine($"{Managers.Player.Name} 의 {Managers.Player.SkillList[skillNumber].Name}!");
 
-            List<int> aliveMonsters = new List<int>();
+            List<Monster> aliveMonsters = new List<Monster>();
             for (int i = 0; i < monsters.Count; i++)
             {
                 if (monsters[i].IsDead() == false)
                 {
-                    aliveMonsters.Add(i);
+                    aliveMonsters.Add(monsters[i]);
                 }
             }
 
@@ -270,44 +272,7 @@ namespace WeGoMars
             float dmg = Managers.Player.SkillList[skillNumber].AttackBonus * Managers.Player.Attack();
             if (monsterNumber == -1)
             {
-                // 전원 공격
-                if (aliveMonsters.Count <= Managers.Player.SkillList[skillNumber].TargetCount)        // 다수 공격인데 몬스터 수가 스킬의 타겟카운트랑 같거나 적은 경우
-                {
-                    for (int i = 0; i < monsters.Count; i++)
-                    {
-                        if (monsters[i].IsDead() == false)
-                        {
-                            monsters[i].TakeDamage((int)Math.Round(dmg));
-                            Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                            Console.WriteLine($"Lv.{monsters[i].Level} {monsters[i].Name}");
-                            Console.WriteLine($"HP {monsterHp[i]} -> {monsters[i].Hp}");
-                        }
-                    }
-                }
-                // 랜덤 다수 공격
-                else                                                                    // 다수 공격에서 몬스터 수가 더 많은 경우
-                {
-                    int min = 0;                                                                //타겟카운트만큼 랜덤하게 몬스터를 고르는 과정
-                    int max = aliveMonsters.Count;
-                    int[] allTargets = Enumerable.Range(min, max).ToArray();
-                    int[] realTargets = new int[Managers.Player.SkillList[skillNumber].TargetCount];
-                    for (int i = 0; i < Managers.Player.SkillList[skillNumber].TargetCount; i++)
-                    {
-                        int randomIndex = random.Next(allTargets.Length);
-                        realTargets[i] = allTargets[randomIndex];
-
-                        // 추출된 숫자를 배열에서 제거하여 중복을 방지합니다.
-                        allTargets = allTargets.Where((val, idx) => idx != randomIndex).ToArray();
-                    }
-                    for (int i = 0; i < realTargets.Length; i++)
-                    {
-                        monsters[aliveMonsters[realTargets[i]]].TakeDamage((int)Math.Round(dmg));
-                        Console.WriteLine($"Lv.{monsters[aliveMonsters[realTargets[i]]].Level} {monsters[aliveMonsters[realTargets[i]]].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
-                        Console.WriteLine($"Lv.{monsters[aliveMonsters[realTargets[i]]].Level} {monsters[aliveMonsters[realTargets[i]]].Name}");
-                        Console.WriteLine($"HP {monsterHp[aliveMonsters[realTargets[i]]]} -> {monsters[aliveMonsters[realTargets[i]]].Hp}");
-                    }
-                }
-
+                DisplayUseMultiTargetSkill(aliveMonsters, skillNumber, dmg);
             }
 
             else                        // 단일 공격일 경우
@@ -346,6 +311,51 @@ namespace WeGoMars
                 }
             }
             CheckMonsterWin();
+        }
+
+        public void DisplayUseMultiTargetSkill(List<Monster> aliveMonsters, int skillNumber, float dmg)
+        {
+            int resultLength = monsters.Count;
+            int targetCount = Managers.Player.SkillList[skillNumber].TargetCount;
+            int[] realTargets = new int[targetCount];
+            List<Monster> targetMonsters = new List<Monster>();
+
+            if (aliveMonsters.Count <= targetCount)
+            {
+                targetCount = aliveMonsters.Count;
+                targetMonsters = aliveMonsters;
+            }
+            else
+            {
+                int[] allTargets = Enumerable.Range(0, aliveMonsters.Count).ToArray();
+
+                for (int i = 0; i < targetCount; i++)
+                {
+                    int randomIndex = random.Next(allTargets.Length);
+                    targetMonsters.Add(aliveMonsters[allTargets[randomIndex]]);
+
+                    // 추출된 숫자를 배열에서 제거하여 중복을 방지합니다.
+                    allTargets = allTargets.Where((val, idx) => idx != randomIndex).ToArray();
+                }
+                resultLength = realTargets.Length;
+            }
+
+            int[] targetMonsterHp = new int[targetCount];
+            for (int i = 0; i < targetMonsters.Count; i++)
+            {
+                targetMonsterHp[i] = targetMonsters[i].Hp;
+            }
+
+            for (int i = 0; i < targetMonsters.Count; i++)
+            {
+                if (targetMonsters[i].IsDead() == false)
+                {
+                    targetMonsters[i].TakeDamage((int)Math.Round(dmg));
+                    Console.WriteLine($"Lv.{targetMonsters[i].Level} {targetMonsters[i].Name} 을(를) 맞췄습니다. [데미지 : {(int)Math.Round(dmg)}]");
+                    Console.WriteLine($"Lv.{targetMonsters[i].Level} {targetMonsters[i].Name}");
+                    Console.WriteLine($"HP {targetMonsterHp[i]} -> {targetMonsters[i].Hp}");
+                }
+            }
         }
 
         public void DisplayResultWin()
